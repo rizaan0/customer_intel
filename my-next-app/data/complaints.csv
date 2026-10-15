@@ -1,0 +1,160 @@
+id,text,created_at,channel,order_id
+c0001,Late delivery today. I am unhappy this shipment was delayed. Order 5001.,2026-08-31T12:00:00.000Z,phone,5001
+c0002,The delivery was late and the package was delayed. Order 5002.,2026-09-01T12:00:00.000Z,phone,5002
+c0003,Late delivery today. I am unhappy this shipment was delayed. Order 5003.,2026-09-02T12:00:00.000Z,phone,5003
+c0004,The delivery was late and the package was delayed. Order 5004.,2026-09-03T12:00:00.000Z,phone,5004
+c0005,My package was damaged. The product is cracked. Order 5005.,2026-09-04T12:00:00.000Z,phone,5005
+c0006,The item arrived damaged and broken. Order 5006.,2026-09-05T12:00:00.000Z,phone,5006
+c0007,My package was damaged. The product is cracked. Order 5007.,2026-09-06T12:00:00.000Z,phone,5007
+c0008,I am still waiting on my refund. Order 5008.,2026-08-31T12:00:00.000Z,phone,5008
+c0009,The refund has not arrived and I need the refund processed. Order 5009.,2026-09-01T12:00:00.000Z,phone,5009
+c0010,You sent the wrong item. This is not what I ordered. Order 5010.,2026-09-02T12:00:00.000Z,phone,5010
+c0011,This is the wrong item. I received an incorrect item. Order 5011.,2026-09-03T12:00:00.000Z,phone,5011
+c0012,You sent the wrong item. This is not what I ordered. Order 5012.,2026-09-04T12:00:00.000Z,phone,5012
+c0013,This is the wrong item. I received an incorrect item. Order 5013.,2026-09-05T12:00:00.000Z,phone,5013
+c0014,You sent the wrong item. This is not what I ordered. Order 5014.,2026-09-06T12:00:00.000Z,phone,5014
+c0015,Customer service was rude when I asked for help. Order 5015.,2026-08-31T12:00:00.000Z,phone,5015
+c0016,The support agent was rude and customer service did not help. Order 5016.,2026-09-01T12:00:00.000Z,phone,5016
+c0017,Customer service was rude when I asked for help. Order 5017.,2026-09-02T12:00:00.000Z,phone,5017
+c0018,The support agent was rude and customer service did not help. Order 5018.,2026-09-03T12:00:00.000Z,phone,5018
+c0019,This is the wrong item. I received an incorrect item.,2026-09-04T12:00:00.000Z,phone,
+c0020,The support agent was rude and customer service did not help.,2026-09-04T12:00:00.000Z,phone,
+c0021,Late delivery today. I am unhappy this shipment was delayed. Order 5201.,2026-09-07T12:00:00.000Z,email,5201
+c0022,The delivery was late and the package was delayed. Order 5202.,2026-09-08T12:00:00.000Z,email,5202
+c0023,Late delivery today. I am unhappy this shipment was delayed. Order 5203.,2026-09-09T12:00:00.000Z,email,5203
+c0024,The delivery was late and the package was delayed. Order 5204.,2026-09-10T12:00:00.000Z,email,5204
+c0025,My package was damaged. The product is cracked. Order 5205.,2026-09-11T12:00:00.000Z,email,5205
+c0026,The item arrived damaged and broken. Order 5206.,2026-09-12T12:00:00.000Z,email,5206
+c0027,My package was damaged. The product is cracked. Order 5207.,2026-09-13T12:00:00.000Z,email,5207
+c0028,I am still waiting on my refund. Order 5208.,2026-09-07T12:00:00.000Z,email,5208
+c0029,The refund has not arrived and I need the refund processed. Order 5209.,2026-09-08T12:00:00.000Z,email,5209
+c0030,You sent the wrong item. This is not what I ordered. Order 5210.,2026-09-09T12:00:00.000Z,email,5210
+c0031,This is the wrong item. I received an incorrect item. Order 5211.,2026-09-10T12:00:00.000Z,email,5211
+c0032,You sent the wrong item. This is not what I ordered. Order 5212.,2026-09-11T12:00:00.000Z,chat,5212
+c0033,This is the wrong item. I received an incorrect item. Order 5213.,2026-09-12T12:00:00.000Z,chat,5213
+c0034,You sent the wrong item. This is not what I ordered. Order 5214.,2026-09-13T12:00:00.000Z,chat,5214
+c0035,Customer service was rude when I asked for help. Order 5215.,2026-09-07T12:00:00.000Z,chat,5215
+c0036,The support agent was rude and customer service did not help. Order 5216.,2026-09-08T12:00:00.000Z,chat,5216
+c0037,Customer service was rude when I asked for help. Order 5217.,2026-09-09T12:00:00.000Z,chat,5217
+c0038,The support agent was rude and customer service did not help. Order 5218.,2026-09-10T12:00:00.000Z,chat,5218
+c0039,This is the wrong item. I received an incorrect item.,2026-09-11T12:00:00.000Z,chat,
+c0040,The support agent was rude and customer service did not help.,2026-09-11T12:00:00.000Z,chat,
+c0041,Late delivery today. I am unhappy this shipment was delayed. Order 5401.,2026-09-14T12:00:00.000Z,review,5401
+c0042,The delivery was late and the package was delayed. Order 5402.,2026-09-15T12:00:00.000Z,review,5402
+c0043,Late delivery today. I am unhappy this shipment was delayed. Order 5403.,2026-09-16T12:00:00.000Z,review,5403
+c0044,The delivery was late and the package was delayed. Order 5404.,2026-09-17T12:00:00.000Z,review,5404
+c0045,My package was damaged. The product is cracked. Order 5405.,2026-09-18T12:00:00.000Z,review,5405
+c0046,The item arrived damaged and broken. Order 5406.,2026-09-19T12:00:00.000Z,review,5406
+c0047,My package was damaged. The product is cracked. Order 5407.,2026-09-20T12:00:00.000Z,review,5407
+c0048,I am still waiting on my refund. Order 5408.,2026-09-14T12:00:00.000Z,review,5408
+c0049,The refund has not arrived and I need the refund processed. Order 5409.,2026-09-15T12:00:00.000Z,review,5409
+c0050,You sent the wrong item. This is not what I ordered. Order 5410.,2026-09-16T12:00:00.000Z,review,5410
+c0051,This is the wrong item. I received an incorrect item. Order 5411.,2026-09-17T12:00:00.000Z,review,5411
+c0052,You sent the wrong item. This is not what I ordered. Order 5412.,2026-09-18T12:00:00.000Z,review,5412
+c0053,This is the wrong item. I received an incorrect item. Order 5413.,2026-09-19T12:00:00.000Z,review,5413
+c0054,You sent the wrong item. This is not what I ordered. Order 5414.,2026-09-20T12:00:00.000Z,social,5414
+c0055,Customer service was rude when I asked for help. Order 5415.,2026-09-14T12:00:00.000Z,social,5415
+c0056,The support agent was rude and customer service did not help. Order 5416.,2026-09-15T12:00:00.000Z,social,5416
+c0057,Customer service was rude when I asked for help. Order 5417.,2026-09-16T12:00:00.000Z,social,5417
+c0058,The support agent was rude and customer service did not help. Order 5418.,2026-09-17T12:00:00.000Z,social,5418
+c0059,This is the wrong item. I received an incorrect item.,2026-09-18T12:00:00.000Z,social,
+c0060,The support agent was rude and customer service did not help.,2026-09-18T12:00:00.000Z,social,
+c0061,Late delivery today. I am unhappy this shipment was delayed. Order 5601.,2026-09-21T12:00:00.000Z,support portal,5601
+c0062,The delivery was late and the package was delayed. Order 5602.,2026-09-22T12:00:00.000Z,support portal,5602
+c0063,Late delivery today. I am unhappy this shipment was delayed. Order 5603.,2026-09-23T12:00:00.000Z,support portal,5603
+c0064,The delivery was late and the package was delayed. Order 5604.,2026-09-24T12:00:00.000Z,support portal,5604
+c0065,My package was damaged. The product is cracked. Order 5605.,2026-09-25T12:00:00.000Z,support portal,5605
+c0066,The item arrived damaged and broken. Order 5606.,2026-09-26T12:00:00.000Z,support portal,5606
+c0067,My package was damaged. The product is cracked. Order 5607.,2026-09-27T12:00:00.000Z,support portal,5607
+c0068,I am still waiting on my refund. Order 5608.,2026-09-21T12:00:00.000Z,phone,5608
+c0069,The refund has not arrived and I need the refund processed. Order 5609.,2026-09-22T12:00:00.000Z,phone,5609
+c0070,You sent the wrong item. This is not what I ordered. Order 5610.,2026-09-23T12:00:00.000Z,phone,5610
+c0071,This is the wrong item. I received an incorrect item. Order 5611.,2026-09-24T12:00:00.000Z,phone,5611
+c0072,You sent the wrong item. This is not what I ordered. Order 5612.,2026-09-25T12:00:00.000Z,phone,5612
+c0073,This is the wrong item. I received an incorrect item. Order 5613.,2026-09-26T12:00:00.000Z,phone,5613
+c0074,You sent the wrong item. This is not what I ordered. Order 5614.,2026-09-27T12:00:00.000Z,phone,5614
+c0075,Customer service was rude when I asked for help. Order 5615.,2026-09-21T12:00:00.000Z,phone,5615
+c0076,The support agent was rude and customer service did not help. Order 5616.,2026-09-22T12:00:00.000Z,phone,5616
+c0077,Customer service was rude when I asked for help. Order 5617.,2026-09-23T12:00:00.000Z,phone,5617
+c0078,The support agent was rude and customer service did not help. Order 5618.,2026-09-24T12:00:00.000Z,phone,5618
+c0079,This is the wrong item. I received an incorrect item.,2026-09-25T12:00:00.000Z,phone,
+c0080,The support agent was rude and customer service did not help.,2026-09-25T12:00:00.000Z,phone,
+c0081,Late delivery today. I am unhappy this shipment was delayed. Order 5801.,2026-09-28T12:00:00.000Z,email,5801
+c0082,The delivery was late and the package was delayed. Order 5802.,2026-09-29T12:00:00.000Z,email,5802
+c0083,Late delivery today. I am unhappy this shipment was delayed. Order 5803.,2026-09-30T12:00:00.000Z,email,5803
+c0084,The delivery was late and the package was delayed. Order 5804.,2026-10-01T12:00:00.000Z,email,5804
+c0085,My package was damaged. The product is cracked. Order 5805.,2026-10-02T12:00:00.000Z,email,5805
+c0086,The item arrived damaged and broken. Order 5806.,2026-10-03T12:00:00.000Z,email,5806
+c0087,My package was damaged. The product is cracked. Order 5807.,2026-10-04T12:00:00.000Z,email,5807
+c0088,I am still waiting on my refund. Order 5808.,2026-09-28T12:00:00.000Z,email,5808
+c0089,The refund has not arrived and I need the refund processed. Order 5809.,2026-09-29T12:00:00.000Z,email,5809
+c0090,You sent the wrong item. This is not what I ordered. Order 5810.,2026-09-30T12:00:00.000Z,email,5810
+c0091,This is the wrong item. I received an incorrect item. Order 5811.,2026-10-01T12:00:00.000Z,email,5811
+c0092,You sent the wrong item. This is not what I ordered. Order 5812.,2026-10-02T12:00:00.000Z,email,5812
+c0093,This is the wrong item. I received an incorrect item. Order 5813.,2026-10-03T12:00:00.000Z,email,5813
+c0094,You sent the wrong item. This is not what I ordered. Order 5814.,2026-10-04T12:00:00.000Z,email,5814
+c0095,Customer service was rude when I asked for help. Order 5815.,2026-09-28T12:00:00.000Z,email,5815
+c0096,The support agent was rude and customer service did not help. Order 5816.,2026-09-29T12:00:00.000Z,email,5816
+c0097,Customer service was rude when I asked for help. Order 5817.,2026-09-30T12:00:00.000Z,email,5817
+c0098,The support agent was rude and customer service did not help. Order 5818.,2026-10-01T12:00:00.000Z,email,5818
+c0099,This is the wrong item. I received an incorrect item.,2026-10-02T12:00:00.000Z,chat,
+c0100,The support agent was rude and customer service did not help.,2026-10-02T12:00:00.000Z,chat,
+c0101,Late delivery today. I am unhappy this shipment was delayed. Order 6001.,2026-10-05T12:00:00.000Z,chat,6001
+c0102,The delivery was late and the package was delayed. Order 6002.,2026-10-06T12:00:00.000Z,chat,6002
+c0103,Late delivery today. I am unhappy this shipment was delayed. Order 6003.,2026-10-07T12:00:00.000Z,chat,6003
+c0104,The delivery was late and the package was delayed. Order 6004.,2026-10-08T12:00:00.000Z,chat,6004
+c0105,Late delivery today. I am unhappy this shipment was delayed. Order 6005.,2026-10-09T12:00:00.000Z,review,6005
+c0106,The delivery was late and the package was delayed. Order 6006.,2026-10-10T12:00:00.000Z,review,6006
+c0107,Late delivery today. I am unhappy this shipment was delayed. Order 6007.,2026-10-11T12:00:00.000Z,review,6007
+c0108,The delivery was late and the package was delayed. Order 6008.,2026-10-05T12:00:00.000Z,review,6008
+c0109,Late delivery today. I am unhappy this shipment was delayed. Order 6009.,2026-10-06T12:00:00.000Z,review,6009
+c0110,The delivery was late and the package was delayed. Order 6010.,2026-10-07T12:00:00.000Z,review,6010
+c0111,Late delivery today. I am unhappy this shipment was delayed. Order 6011.,2026-10-08T12:00:00.000Z,review,6011
+c0112,The delivery was late and the package was delayed. Order 6012.,2026-10-09T12:00:00.000Z,review,6012
+c0113,Late delivery today. I am unhappy this shipment was delayed. Order 6013.,2026-10-10T12:00:00.000Z,review,6013
+c0114,The delivery was late and the package was delayed. Order 6014.,2026-10-11T12:00:00.000Z,review,6014
+c0115,Late delivery today. I am unhappy this shipment was delayed. Order 6015.,2026-10-05T12:00:00.000Z,review,6015
+c0116,The delivery was late and the package was delayed. Order 6016.,2026-10-06T12:00:00.000Z,review,6016
+c0117,Late delivery today. I am unhappy this shipment was delayed. Order 6017.,2026-10-07T12:00:00.000Z,review,6017
+c0118,The delivery was late and the package was delayed. Order 6018.,2026-10-08T12:00:00.000Z,review,6018
+c0119,Late delivery today. I am unhappy this shipment was delayed. Order 6019.,2026-10-09T12:00:00.000Z,review,6019
+c0120,The delivery was late and the package was delayed. Order 6020.,2026-10-10T12:00:00.000Z,review,6020
+c0121,My package was damaged. The product is cracked. Order 6021.,2026-10-11T12:00:00.000Z,social,6021
+c0122,The item arrived damaged and broken. Order 6022.,2026-10-05T12:00:00.000Z,social,6022
+c0123,My package was damaged. The product is cracked. Order 6023.,2026-10-06T12:00:00.000Z,social,6023
+c0124,The item arrived damaged and broken. Order 6024.,2026-10-07T12:00:00.000Z,social,6024
+c0125,My package was damaged. The product is cracked. Order 6025.,2026-10-08T12:00:00.000Z,social,6025
+c0126,The item arrived damaged and broken. Order 6026.,2026-10-09T12:00:00.000Z,social,6026
+c0127,My package was damaged. The product is cracked. Order 6027.,2026-10-10T12:00:00.000Z,social,6027
+c0128,The item arrived damaged and broken. Order 6028.,2026-10-11T12:00:00.000Z,social,6028
+c0129,My package was damaged. The product is cracked. Order 6029.,2026-10-05T12:00:00.000Z,social,6029
+c0130,The item arrived damaged and broken. Order 6030.,2026-10-06T12:00:00.000Z,social,6030
+c0131,My package was damaged. The product is cracked. Order 6031.,2026-10-07T12:00:00.000Z,social,6031
+c0132,The item arrived damaged and broken. Order 6032.,2026-10-08T12:00:00.000Z,social,6032
+c0133,My package was damaged. The product is cracked. Order 6033.,2026-10-09T12:00:00.000Z,social,6033
+c0134,The item arrived damaged and broken. Order 6034.,2026-10-10T12:00:00.000Z,social,6034
+c0135,My package was damaged. The product is cracked. Order 6035.,2026-10-11T12:00:00.000Z,support portal,6035
+c0136,The item arrived damaged and broken. Order 6036.,2026-10-05T12:00:00.000Z,support portal,6036
+c0137,The refund has not arrived and I need the refund processed. Order 6037.,2026-10-06T12:00:00.000Z,support portal,6037
+c0138,I am still waiting on my refund. Order 6038.,2026-10-07T12:00:00.000Z,support portal,6038
+c0139,The refund has not arrived and I need the refund processed. Order 6039.,2026-10-08T12:00:00.000Z,support portal,6039
+c0140,I am still waiting on my refund. Order 6040.,2026-10-09T12:00:00.000Z,support portal,6040
+c0141,The refund has not arrived and I need the refund processed. Order 6041.,2026-10-10T12:00:00.000Z,support portal,6041
+c0142,I am still waiting on my refund. Order 6042.,2026-10-11T12:00:00.000Z,support portal,6042
+c0143,The refund has not arrived and I need the refund processed. Order 6043.,2026-10-05T12:00:00.000Z,support portal,6043
+c0144,I am still waiting on my refund. Order 6044.,2026-10-06T12:00:00.000Z,support portal,6044
+c0145,The refund has not arrived and I need the refund processed. Order 6045.,2026-10-07T12:00:00.000Z,support portal,6045
+c0146,I am still waiting on my refund. Order 6046.,2026-10-08T12:00:00.000Z,phone,6046
+c0147,The refund has not arrived and I need the refund processed. Order 6047.,2026-10-09T12:00:00.000Z,phone,6047
+c0148,I am still waiting on my refund. Order 6048.,2026-10-10T12:00:00.000Z,phone,6048
+c0149,This is the wrong item. I received an incorrect item. Order 6049.,2026-10-11T12:00:00.000Z,phone,6049
+c0150,You sent the wrong item. This is not what I ordered. Order 6050.,2026-10-05T12:00:00.000Z,phone,6050
+c0151,This is the wrong item. I received an incorrect item. Order 6051.,2026-10-06T12:00:00.000Z,phone,6051
+c0152,You sent the wrong item. This is not what I ordered. Order 6052.,2026-10-07T12:00:00.000Z,phone,6052
+c0153,This is the wrong item. I received an incorrect item. Order 6053.,2026-10-08T12:00:00.000Z,phone,6053
+c0154,The support agent was rude and customer service did not help. Order 6054.,2026-10-09T12:00:00.000Z,phone,6054
+c0155,Customer service was rude when I asked for help. Order 6055.,2026-10-10T12:00:00.000Z,phone,6055
+c0156,The support agent was rude and customer service did not help. Order 6056.,2026-10-11T12:00:00.000Z,phone,6056
+c0157,Customer service was rude when I asked for help. Order 6057.,2026-10-05T12:00:00.000Z,phone,6057
+c0158,You sent the wrong item. This is not what I ordered.,2026-10-06T12:00:00.000Z,phone,
+c0159,Customer service was rude when I asked for help.,2026-10-06T12:00:00.000Z,phone,
