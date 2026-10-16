@@ -1,5 +1,5 @@
 import type { Complaint, Order } from "./types";
-import { addDays, WEEK_STARTS } from "./weeks";
+import { WEEK_STARTS } from "./weeks";
 
 type Spec = {
   warehouse: string;
@@ -16,167 +16,137 @@ const TARGETS = {
   region: { North: 50, South: 50, West: 50, East: 50 },
 } as const;
 
-const CHANNELS = [
-  ...Array(24).fill("phone"),
-  ...Array(18).fill("email"),
-  ...Array(17).fill("chat"),
-  ...Array(16).fill("review"),
-  ...Array(14).fill("social"),
-  ...Array(11).fill("support portal"),
+const WAREHOUSE_WEIGHTS: [string, number][] = [
+  ["North Hub", 80],
+  ["Warehouse B", 40],
+  ["Coastal Depot", 80],
+];
+const PRODUCT_WEIGHTS: [string, number][] = [
+  ["Oak Chair", 90],
+  ["Glass Vase", 30],
+  ["Cotton Shirt", 80],
+];
+const PARTNER_WEIGHTS: [string, number][] = [
+  ["SwiftHaul", 80],
+  ["MetroRoute", 50],
+  ["CityDrop", 70],
+];
+const REGION_WEIGHTS: [string, number][] = [
+  ["North", 50],
+  ["South", 50],
+  ["West", 50],
+  ["East", 50],
 ];
 
-const REGIONS = ["North", "South", "West", "East"];
+type IssuePlan = {
+  issue: string;
+  count: number;
+  focus?: { warehouse?: string; product?: string; partner?: string; count: number };
+};
+
+const WEEK_PLANS: IssuePlan[][] = [
+  [
+    { issue: "late delivery", count: 9, focus: { warehouse: "Warehouse B", count: 2 } },
+    { issue: "damaged item", count: 8, focus: { product: "Glass Vase", count: 2 } },
+    { issue: "refund delay", count: 6, focus: { partner: "MetroRoute", count: 2 } },
+    { issue: "wrong item", count: 8 },
+    { issue: "support experience", count: 6 },
+  ],
+  [
+    { issue: "late delivery", count: 10, focus: { warehouse: "Warehouse B", count: 2 } },
+    { issue: "damaged item", count: 8, focus: { product: "Glass Vase", count: 2 } },
+    { issue: "refund delay", count: 7, focus: { partner: "MetroRoute", count: 2 } },
+    { issue: "wrong item", count: 7 },
+    { issue: "support experience", count: 7 },
+  ],
+  [
+    { issue: "late delivery", count: 11, focus: { warehouse: "Warehouse B", count: 3 } },
+    { issue: "damaged item", count: 9, focus: { product: "Glass Vase", count: 2 } },
+    { issue: "refund delay", count: 6, focus: { partner: "MetroRoute", count: 2 } },
+    { issue: "wrong item", count: 8 },
+    { issue: "support experience", count: 6 },
+  ],
+  [
+    { issue: "late delivery", count: 10, focus: { warehouse: "Warehouse B", count: 3 } },
+    { issue: "damaged item", count: 8, focus: { product: "Glass Vase", count: 2 } },
+    { issue: "refund delay", count: 7, focus: { partner: "MetroRoute", count: 2 } },
+    { issue: "wrong item", count: 8 },
+    { issue: "support experience", count: 7 },
+  ],
+  [
+    { issue: "late delivery", count: 13, focus: { warehouse: "Warehouse B", count: 4 } },
+    { issue: "damaged item", count: 10, focus: { product: "Glass Vase", count: 3 } },
+    { issue: "refund delay", count: 8, focus: { partner: "MetroRoute", count: 3 } },
+    { issue: "wrong item", count: 7 },
+    { issue: "support experience", count: 6 },
+  ],
+  [
+    { issue: "late delivery", count: 18, focus: { warehouse: "Warehouse B", count: 8 } },
+    { issue: "damaged item", count: 14, focus: { product: "Glass Vase", count: 6 } },
+    { issue: "refund delay", count: 11, focus: { partner: "MetroRoute", count: 6 } },
+    { issue: "wrong item", count: 8 },
+    { issue: "support experience", count: 7 },
+  ],
+];
 
 export function generateDataset(): { orders: Order[]; complaints: Complaint[] } {
   const orders: Order[] = [];
   const complaints: Complaint[] = [];
   let nextOrderId = 5001;
   let nextComplaint = 1;
-  let channelCursor = 0;
 
   WEEK_STARTS.forEach((week, weekIndex) => {
-    const spike = weekIndex === WEEK_STARTS.length - 1;
-    const specs = spike ? spikeSpecs() : baselineSpecs();
+    const specs = weekSpecs(WEEK_PLANS[weekIndex]);
     const weekOrders = buildWeekOrders(week, nextOrderId, specs);
     nextOrderId += weekOrders.length;
     orders.push(...weekOrders);
 
     specs.forEach((spec, index) => {
-      const order = weekOrders[index];
-      complaints.push(
-        makeComplaint(spec.issue, order, week, index, nextComplaint, CHANNELS[(channelCursor + weekIndex * 11) % CHANNELS.length]),
-      );
+      complaints.push(makeComplaint(spec.issue, weekOrders[index], week, index, nextComplaint));
       nextComplaint += 1;
-      channelCursor += 1;
     });
-
-    const unlinkedIssues = spike
-      ? (["wrong item", "support experience"] as const)
-      : (["wrong item", "support experience"] as const);
-    for (const issue of unlinkedIssues) {
-      complaints.push(
-        makeComplaint(issue, null, week, specs.length, nextComplaint, CHANNELS[(channelCursor + weekIndex * 11) % CHANNELS.length]),
-      );
-      nextComplaint += 1;
-      channelCursor += 1;
-    }
   });
 
   return { orders, complaints };
 }
 
-function baselineSpecs(): Spec[] {
-  const issues: [string, number][] = [
-    ["late delivery", 4],
-    ["damaged item", 3],
-    ["refund delay", 2],
-    ["wrong item", 5],
-    ["support experience", 4],
-  ];
-  const specs: Spec[] = [];
-  for (const [issue, count] of issues) {
-    for (let i = 0; i < count; i++) specs.push(looseSpec(issue, specs.length));
+function weekSpecs(plans: IssuePlan[]): Spec[] {
+  return plans.flatMap((plan) => {
+    const warehouses = mix(plan.count, WAREHOUSE_WEIGHTS, plan.focus?.warehouse, plan.focus?.warehouse ? plan.focus.count : 0);
+    const products = mix(plan.count, PRODUCT_WEIGHTS, plan.focus?.product, plan.focus?.product ? plan.focus.count : 0);
+    const partners = mix(plan.count, PARTNER_WEIGHTS, plan.focus?.partner, plan.focus?.partner ? plan.focus.count : 0);
+    const regions = mix(plan.count, REGION_WEIGHTS);
+    return warehouses.map((warehouse, index) => ({
+      issue: plan.issue,
+      warehouse,
+      product: products[index],
+      partner: partners[index],
+      region: regions[index],
+    }));
+  });
+}
+
+function mix(count: number, weights: [string, number][], focus?: string, focusCount = 0): string[] {
+  const rest = allocate(count - focusCount, focus ? weights.filter(([name]) => name !== focus) : weights);
+  return focus ? [...Array(focusCount).fill(focus), ...rest] : rest;
+}
+
+function allocate(count: number, weights: [string, number][]): string[] {
+  if (count <= 0) return [];
+  const total = weights.reduce((sum, [, weight]) => sum + weight, 0);
+  const rows = weights.map(([name, weight]) => {
+    const exact = (count * weight) / total;
+    return { name, base: Math.floor(exact), frac: exact - Math.floor(exact) };
+  });
+  let used = rows.reduce((sum, row) => sum + row.base, 0);
+  const byFrac = [...rows].sort((a, b) => b.frac - a.frac || a.name.localeCompare(b.name));
+  let index = 0;
+  while (used < count) {
+    byFrac[index % byFrac.length].base += 1;
+    used += 1;
+    index += 1;
   }
-  return specs;
-}
-
-function looseSpec(issue: string, index: number): Spec {
-  const warehouses = ["North Hub", "Warehouse B", "Coastal Depot", "North Hub", "Coastal Depot"];
-  const products = ["Oak Chair", "Cotton Shirt", "Glass Vase", "Oak Chair", "Cotton Shirt"];
-  const partners = ["SwiftHaul", "CityDrop", "MetroRoute", "SwiftHaul", "CityDrop"];
-  return {
-    issue,
-    warehouse: warehouses[index % warehouses.length],
-    product: products[index % products.length],
-    partner: partners[index % partners.length],
-    region: REGIONS[index % REGIONS.length],
-  };
-}
-
-function spikeSpecs(): Spec[] {
-  return [
-    ...repeatSpecs("late delivery", {
-      count: 16,
-      warehouse: "Warehouse B",
-      products: pack(["Oak Chair", 7], ["Glass Vase", 2], ["Cotton Shirt", 7]),
-      partners: pack(["SwiftHaul", 6], ["MetroRoute", 4], ["CityDrop", 6]),
-    }),
-    spec("late delivery", "North Hub", "Oak Chair", "SwiftHaul", "North"),
-    spec("late delivery", "North Hub", "Glass Vase", "CityDrop", "South"),
-    spec("late delivery", "Coastal Depot", "Cotton Shirt", "MetroRoute", "West"),
-    spec("late delivery", "Coastal Depot", "Cotton Shirt", "SwiftHaul", "East"),
-    ...repeatSpecs("damaged item", {
-      count: 12,
-      product: "Glass Vase",
-      warehouses: pack(["North Hub", 5], ["Warehouse B", 2], ["Coastal Depot", 5]),
-      partners: pack(["SwiftHaul", 4], ["MetroRoute", 4], ["CityDrop", 4]),
-    }),
-    spec("damaged item", "Coastal Depot", "Oak Chair", "SwiftHaul", "North"),
-    spec("damaged item", "Coastal Depot", "Oak Chair", "CityDrop", "South"),
-    spec("damaged item", "North Hub", "Cotton Shirt", "SwiftHaul", "West"),
-    spec("damaged item", "North Hub", "Cotton Shirt", "CityDrop", "East"),
-    ...repeatSpecs("refund delay", {
-      count: 8,
-      partner: "MetroRoute",
-      warehouses: pack(["North Hub", 3], ["Warehouse B", 2], ["Coastal Depot", 3]),
-      products: pack(["Oak Chair", 3], ["Cotton Shirt", 3], ["Glass Vase", 2]),
-    }),
-    spec("refund delay", "North Hub", "Oak Chair", "SwiftHaul", "North"),
-    spec("refund delay", "Coastal Depot", "Cotton Shirt", "SwiftHaul", "South"),
-    spec("refund delay", "North Hub", "Oak Chair", "CityDrop", "West"),
-    spec("refund delay", "Coastal Depot", "Cotton Shirt", "CityDrop", "East"),
-    ...repeatSpecs("wrong item", {
-      count: 5,
-      warehouses: pack(["North Hub", 2], ["Warehouse B", 1], ["Coastal Depot", 2]),
-      products: pack(["Oak Chair", 2], ["Cotton Shirt", 2], ["Glass Vase", 1]),
-      partners: pack(["SwiftHaul", 2], ["CityDrop", 2], ["MetroRoute", 1]),
-    }),
-    ...repeatSpecs("support experience", {
-      count: 4,
-      warehouses: pack(["North Hub", 2], ["Coastal Depot", 2]),
-      products: pack(["Oak Chair", 2], ["Cotton Shirt", 2]),
-      partners: pack(["SwiftHaul", 2], ["CityDrop", 2]),
-    }),
-  ];
-}
-
-function spec(
-  issue: string,
-  warehouse: string,
-  product: string,
-  partner: string,
-  region: string,
-): Spec {
-  return { issue, warehouse, product, partner, region };
-}
-
-function pack(...pairs: [string, number][]): string[] {
-  return pairs.flatMap(([name, count]) => Array(count).fill(name));
-}
-
-function repeatSpecs(
-  issue: string,
-  options: {
-    count: number;
-    warehouse?: string;
-    product?: string;
-    partner?: string;
-    warehouses?: string[];
-    products?: string[];
-    partners?: string[];
-  },
-): Spec[] {
-  const specs: Spec[] = [];
-  for (let i = 0; i < options.count; i++) {
-    specs.push({
-      issue,
-      warehouse: options.warehouse ?? options.warehouses?.[i] ?? "North Hub",
-      product: options.product ?? options.products?.[i] ?? "Oak Chair",
-      partner: options.partner ?? options.partners?.[i] ?? "SwiftHaul",
-      region: REGIONS[i % REGIONS.length],
-    });
-  }
-  return specs;
+  return rows.flatMap((row) => Array(row.base).fill(row.name));
 }
 
 function buildWeekOrders(week: string, idStart: number, specs: Spec[]): Order[] {
@@ -214,7 +184,7 @@ function buildWeekOrders(week: string, idStart: number, specs: Spec[]): Order[] 
 function orderFrom(week: string, id: number, index: number, item: Spec): Order {
   return {
     orderId: String(id),
-    orderedAt: addDays(week, index % 7),
+    orderedAt: atTime(week, index, id),
     product: item.product,
     warehouse: item.warehouse,
     partner: item.partner,
@@ -222,50 +192,67 @@ function orderFrom(week: string, id: number, index: number, item: Spec): Order {
   };
 }
 
-function makeComplaint(
-  issue: string,
-  order: Order | null,
-  week: string,
-  index: number,
-  complaintNumber: number,
-  channel: string,
-): Complaint {
-  const orderId = order?.orderId ?? "";
+function makeComplaint(issue: string, order: Order, week: string, index: number, complaintNumber: number): Complaint {
   return {
     id: `c${String(complaintNumber).padStart(4, "0")}`,
-    text: complaintText(issue, orderId, complaintNumber),
-    createdAt: addDays(week, index % 7),
-    channel,
-    orderId,
+    text: complaintText(issue, order.orderId, complaintNumber),
+    createdAt: atTime(week, index, complaintNumber + 17),
+    channel: "email",
+    orderId: order.orderId,
   };
 }
 
+function atTime(week: string, index: number, seed: number): string {
+  const date = new Date(`${week}T00:00:00.000Z`);
+  date.setUTCDate(date.getUTCDate() + (index % 7));
+  date.setUTCHours(8 + ((seed * 5) % 11), (seed * 17) % 60, (seed * 11) % 60, 0);
+  return date.toISOString();
+}
+
 function complaintText(issue: string, orderId: string, seed: number): string {
-  const orderBit = orderId ? ` Order ${orderId}.` : "";
   const variants: Record<string, string[]> = {
     "late delivery": [
-      `The delivery was late and the package was delayed.${orderBit}`,
-      `Late delivery today. I am unhappy this shipment was delayed.${orderBit}`,
+      `Hi, Order ${orderId} was due Tuesday and the delivery was late. Can you tell me where it is?`,
+      `The carrier marked Order ${orderId} as delayed. This late delivery has left us without the item for work.`,
+      `Just checking in because Order ${orderId} still has not shown up. The delivery is late again.`,
+      `Order ${orderId} missed the delivery window. It is now a full day late.`,
+      `Our office was closed waiting on Order ${orderId}. The late delivery means we cannot finish the setup.`,
+      `Please look at Order ${orderId}. The tracking has not moved and the delivery is late.`,
     ],
     "damaged item": [
-      `The item arrived damaged and broken.${orderBit}`,
-      `My package was damaged. The product is cracked.${orderBit}`,
+      `Order ${orderId} arrived damaged. The corner of the box was crushed and the item is cracked.`,
+      `I opened Order ${orderId} and the product is broken. It looks damaged from the trip.`,
+      `The glass in Order ${orderId} is cracked. Please treat this as a damaged item.`,
+      `Order ${orderId} came with a torn carton. The contents are damaged and one piece is broken.`,
+      `There is a crack across the item in Order ${orderId}. I cannot use something that arrived damaged.`,
+      `Order ${orderId} was wet when it arrived and the product is damaged.`,
     ],
     "wrong item": [
-      `You sent the wrong item. This is not what I ordered.${orderBit}`,
-      `This is the wrong item. I received an incorrect item.${orderBit}`,
+      `Order ${orderId} is the wrong item. I ordered a different size and colour.`,
+      `What arrived for Order ${orderId} is the wrong item. The label does not match my order.`,
+      `I received an incorrect item on Order ${orderId}. This is the wrong item entirely.`,
+      `Order ${orderId} contains the wrong item. The sku on the packing slip is not what I bought.`,
+      `Please arrange a swap for Order ${orderId}. You sent the wrong item.`,
+      `The box for Order ${orderId} had someone else's product. It is the wrong item.`,
     ],
     "refund delay": [
-      `I am still waiting on my refund.${orderBit}`,
-      `The refund has not arrived and I need the refund processed.${orderBit}`,
+      `I returned Order ${orderId} ten days ago and I am still waiting on the refund.`,
+      `The refund for Order ${orderId} has not reached my card. Can you check the status?`,
+      `Order ${orderId} was cancelled, but the refund is still missing.`,
+      `Support told me the refund for Order ${orderId} was sent last week. It is not there.`,
+      `I need the refund from Order ${orderId} before I can place a replacement.`,
+      `Following up on Order ${orderId}. The return was accepted and the refund has not posted.`,
     ],
     "support experience": [
-      `The support agent was rude and customer service did not help.${orderBit}`,
-      `Customer service was rude when I asked for help.${orderBit}`,
+      `I am wondering why customer service closed Order ${orderId} without an answer.`,
+      `The support agent on Order ${orderId} was rude and ended the chat.`,
+      `Customer service kept transferring me about Order ${orderId} and nobody followed up.`,
+      `I asked for help with Order ${orderId} and the support agent was rude about the wait.`,
+      `Customer service told me to reorder Order ${orderId} instead of fixing it.`,
+      `The note on Order ${orderId} says resolved, but customer service never replied to me.`,
     ],
   };
-  const options = variants[issue];
-  return options[seed % options.length].replace(/\s+/g, " ").trim();
+  return variants[issue][seed % variants[issue].length];
 }
 
 function empty(target: Record<string, number>): Record<string, number> {

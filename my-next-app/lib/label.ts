@@ -28,6 +28,8 @@ const ISSUE_RULES: { issue: string; reason: string; test: (text: string) => bool
   },
 ];
 
+export const COMPLAINT_KEYWORDS = ISSUE_RULES.map((rule) => rule.issue);
+
 export function issueSlug(issue: string): string {
   return issue.toLowerCase().replace(/\s+/g, "-");
 }

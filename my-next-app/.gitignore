@@ -36,6 +36,7 @@ yarn-error.log*
 
 # connected support inbox credentials
 /data/connection.json
+/data/mail-list.json
 
 # vercel
 .vercel

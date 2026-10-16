@@ -1,160 +1,259 @@
 id,text,created_at,channel,order_id
-c0001,Late delivery today. I am unhappy this shipment was delayed. Order 5001.,2026-08-31T12:00:00.000Z,phone,5001
-c0002,The delivery was late and the package was delayed. Order 5002.,2026-09-01T12:00:00.000Z,phone,5002
-c0003,Late delivery today. I am unhappy this shipment was delayed. Order 5003.,2026-09-02T12:00:00.000Z,phone,5003
-c0004,The delivery was late and the package was delayed. Order 5004.,2026-09-03T12:00:00.000Z,phone,5004
-c0005,My package was damaged. The product is cracked. Order 5005.,2026-09-04T12:00:00.000Z,phone,5005
-c0006,The item arrived damaged and broken. Order 5006.,2026-09-05T12:00:00.000Z,phone,5006
-c0007,My package was damaged. The product is cracked. Order 5007.,2026-09-06T12:00:00.000Z,phone,5007
-c0008,I am still waiting on my refund. Order 5008.,2026-08-31T12:00:00.000Z,phone,5008
-c0009,The refund has not arrived and I need the refund processed. Order 5009.,2026-09-01T12:00:00.000Z,phone,5009
-c0010,You sent the wrong item. This is not what I ordered. Order 5010.,2026-09-02T12:00:00.000Z,phone,5010
-c0011,This is the wrong item. I received an incorrect item. Order 5011.,2026-09-03T12:00:00.000Z,phone,5011
-c0012,You sent the wrong item. This is not what I ordered. Order 5012.,2026-09-04T12:00:00.000Z,phone,5012
-c0013,This is the wrong item. I received an incorrect item. Order 5013.,2026-09-05T12:00:00.000Z,phone,5013
-c0014,You sent the wrong item. This is not what I ordered. Order 5014.,2026-09-06T12:00:00.000Z,phone,5014
-c0015,Customer service was rude when I asked for help. Order 5015.,2026-08-31T12:00:00.000Z,phone,5015
-c0016,The support agent was rude and customer service did not help. Order 5016.,2026-09-01T12:00:00.000Z,phone,5016
-c0017,Customer service was rude when I asked for help. Order 5017.,2026-09-02T12:00:00.000Z,phone,5017
-c0018,The support agent was rude and customer service did not help. Order 5018.,2026-09-03T12:00:00.000Z,phone,5018
-c0019,This is the wrong item. I received an incorrect item.,2026-09-04T12:00:00.000Z,phone,
-c0020,The support agent was rude and customer service did not help.,2026-09-04T12:00:00.000Z,phone,
-c0021,Late delivery today. I am unhappy this shipment was delayed. Order 5201.,2026-09-07T12:00:00.000Z,email,5201
-c0022,The delivery was late and the package was delayed. Order 5202.,2026-09-08T12:00:00.000Z,email,5202
-c0023,Late delivery today. I am unhappy this shipment was delayed. Order 5203.,2026-09-09T12:00:00.000Z,email,5203
-c0024,The delivery was late and the package was delayed. Order 5204.,2026-09-10T12:00:00.000Z,email,5204
-c0025,My package was damaged. The product is cracked. Order 5205.,2026-09-11T12:00:00.000Z,email,5205
-c0026,The item arrived damaged and broken. Order 5206.,2026-09-12T12:00:00.000Z,email,5206
-c0027,My package was damaged. The product is cracked. Order 5207.,2026-09-13T12:00:00.000Z,email,5207
-c0028,I am still waiting on my refund. Order 5208.,2026-09-07T12:00:00.000Z,email,5208
-c0029,The refund has not arrived and I need the refund processed. Order 5209.,2026-09-08T12:00:00.000Z,email,5209
-c0030,You sent the wrong item. This is not what I ordered. Order 5210.,2026-09-09T12:00:00.000Z,email,5210
-c0031,This is the wrong item. I received an incorrect item. Order 5211.,2026-09-10T12:00:00.000Z,email,5211
-c0032,You sent the wrong item. This is not what I ordered. Order 5212.,2026-09-11T12:00:00.000Z,chat,5212
-c0033,This is the wrong item. I received an incorrect item. Order 5213.,2026-09-12T12:00:00.000Z,chat,5213
-c0034,You sent the wrong item. This is not what I ordered. Order 5214.,2026-09-13T12:00:00.000Z,chat,5214
-c0035,Customer service was rude when I asked for help. Order 5215.,2026-09-07T12:00:00.000Z,chat,5215
-c0036,The support agent was rude and customer service did not help. Order 5216.,2026-09-08T12:00:00.000Z,chat,5216
-c0037,Customer service was rude when I asked for help. Order 5217.,2026-09-09T12:00:00.000Z,chat,5217
-c0038,The support agent was rude and customer service did not help. Order 5218.,2026-09-10T12:00:00.000Z,chat,5218
-c0039,This is the wrong item. I received an incorrect item.,2026-09-11T12:00:00.000Z,chat,
-c0040,The support agent was rude and customer service did not help.,2026-09-11T12:00:00.000Z,chat,
-c0041,Late delivery today. I am unhappy this shipment was delayed. Order 5401.,2026-09-14T12:00:00.000Z,review,5401
-c0042,The delivery was late and the package was delayed. Order 5402.,2026-09-15T12:00:00.000Z,review,5402
-c0043,Late delivery today. I am unhappy this shipment was delayed. Order 5403.,2026-09-16T12:00:00.000Z,review,5403
-c0044,The delivery was late and the package was delayed. Order 5404.,2026-09-17T12:00:00.000Z,review,5404
-c0045,My package was damaged. The product is cracked. Order 5405.,2026-09-18T12:00:00.000Z,review,5405
-c0046,The item arrived damaged and broken. Order 5406.,2026-09-19T12:00:00.000Z,review,5406
-c0047,My package was damaged. The product is cracked. Order 5407.,2026-09-20T12:00:00.000Z,review,5407
-c0048,I am still waiting on my refund. Order 5408.,2026-09-14T12:00:00.000Z,review,5408
-c0049,The refund has not arrived and I need the refund processed. Order 5409.,2026-09-15T12:00:00.000Z,review,5409
-c0050,You sent the wrong item. This is not what I ordered. Order 5410.,2026-09-16T12:00:00.000Z,review,5410
-c0051,This is the wrong item. I received an incorrect item. Order 5411.,2026-09-17T12:00:00.000Z,review,5411
-c0052,You sent the wrong item. This is not what I ordered. Order 5412.,2026-09-18T12:00:00.000Z,review,5412
-c0053,This is the wrong item. I received an incorrect item. Order 5413.,2026-09-19T12:00:00.000Z,review,5413
-c0054,You sent the wrong item. This is not what I ordered. Order 5414.,2026-09-20T12:00:00.000Z,social,5414
-c0055,Customer service was rude when I asked for help. Order 5415.,2026-09-14T12:00:00.000Z,social,5415
-c0056,The support agent was rude and customer service did not help. Order 5416.,2026-09-15T12:00:00.000Z,social,5416
-c0057,Customer service was rude when I asked for help. Order 5417.,2026-09-16T12:00:00.000Z,social,5417
-c0058,The support agent was rude and customer service did not help. Order 5418.,2026-09-17T12:00:00.000Z,social,5418
-c0059,This is the wrong item. I received an incorrect item.,2026-09-18T12:00:00.000Z,social,
-c0060,The support agent was rude and customer service did not help.,2026-09-18T12:00:00.000Z,social,
-c0061,Late delivery today. I am unhappy this shipment was delayed. Order 5601.,2026-09-21T12:00:00.000Z,support portal,5601
-c0062,The delivery was late and the package was delayed. Order 5602.,2026-09-22T12:00:00.000Z,support portal,5602
-c0063,Late delivery today. I am unhappy this shipment was delayed. Order 5603.,2026-09-23T12:00:00.000Z,support portal,5603
-c0064,The delivery was late and the package was delayed. Order 5604.,2026-09-24T12:00:00.000Z,support portal,5604
-c0065,My package was damaged. The product is cracked. Order 5605.,2026-09-25T12:00:00.000Z,support portal,5605
-c0066,The item arrived damaged and broken. Order 5606.,2026-09-26T12:00:00.000Z,support portal,5606
-c0067,My package was damaged. The product is cracked. Order 5607.,2026-09-27T12:00:00.000Z,support portal,5607
-c0068,I am still waiting on my refund. Order 5608.,2026-09-21T12:00:00.000Z,phone,5608
-c0069,The refund has not arrived and I need the refund processed. Order 5609.,2026-09-22T12:00:00.000Z,phone,5609
-c0070,You sent the wrong item. This is not what I ordered. Order 5610.,2026-09-23T12:00:00.000Z,phone,5610
-c0071,This is the wrong item. I received an incorrect item. Order 5611.,2026-09-24T12:00:00.000Z,phone,5611
-c0072,You sent the wrong item. This is not what I ordered. Order 5612.,2026-09-25T12:00:00.000Z,phone,5612
-c0073,This is the wrong item. I received an incorrect item. Order 5613.,2026-09-26T12:00:00.000Z,phone,5613
-c0074,You sent the wrong item. This is not what I ordered. Order 5614.,2026-09-27T12:00:00.000Z,phone,5614
-c0075,Customer service was rude when I asked for help. Order 5615.,2026-09-21T12:00:00.000Z,phone,5615
-c0076,The support agent was rude and customer service did not help. Order 5616.,2026-09-22T12:00:00.000Z,phone,5616
-c0077,Customer service was rude when I asked for help. Order 5617.,2026-09-23T12:00:00.000Z,phone,5617
-c0078,The support agent was rude and customer service did not help. Order 5618.,2026-09-24T12:00:00.000Z,phone,5618
-c0079,This is the wrong item. I received an incorrect item.,2026-09-25T12:00:00.000Z,phone,
-c0080,The support agent was rude and customer service did not help.,2026-09-25T12:00:00.000Z,phone,
-c0081,Late delivery today. I am unhappy this shipment was delayed. Order 5801.,2026-09-28T12:00:00.000Z,email,5801
-c0082,The delivery was late and the package was delayed. Order 5802.,2026-09-29T12:00:00.000Z,email,5802
-c0083,Late delivery today. I am unhappy this shipment was delayed. Order 5803.,2026-09-30T12:00:00.000Z,email,5803
-c0084,The delivery was late and the package was delayed. Order 5804.,2026-10-01T12:00:00.000Z,email,5804
-c0085,My package was damaged. The product is cracked. Order 5805.,2026-10-02T12:00:00.000Z,email,5805
-c0086,The item arrived damaged and broken. Order 5806.,2026-10-03T12:00:00.000Z,email,5806
-c0087,My package was damaged. The product is cracked. Order 5807.,2026-10-04T12:00:00.000Z,email,5807
-c0088,I am still waiting on my refund. Order 5808.,2026-09-28T12:00:00.000Z,email,5808
-c0089,The refund has not arrived and I need the refund processed. Order 5809.,2026-09-29T12:00:00.000Z,email,5809
-c0090,You sent the wrong item. This is not what I ordered. Order 5810.,2026-09-30T12:00:00.000Z,email,5810
-c0091,This is the wrong item. I received an incorrect item. Order 5811.,2026-10-01T12:00:00.000Z,email,5811
-c0092,You sent the wrong item. This is not what I ordered. Order 5812.,2026-10-02T12:00:00.000Z,email,5812
-c0093,This is the wrong item. I received an incorrect item. Order 5813.,2026-10-03T12:00:00.000Z,email,5813
-c0094,You sent the wrong item. This is not what I ordered. Order 5814.,2026-10-04T12:00:00.000Z,email,5814
-c0095,Customer service was rude when I asked for help. Order 5815.,2026-09-28T12:00:00.000Z,email,5815
-c0096,The support agent was rude and customer service did not help. Order 5816.,2026-09-29T12:00:00.000Z,email,5816
-c0097,Customer service was rude when I asked for help. Order 5817.,2026-09-30T12:00:00.000Z,email,5817
-c0098,The support agent was rude and customer service did not help. Order 5818.,2026-10-01T12:00:00.000Z,email,5818
-c0099,This is the wrong item. I received an incorrect item.,2026-10-02T12:00:00.000Z,chat,
-c0100,The support agent was rude and customer service did not help.,2026-10-02T12:00:00.000Z,chat,
-c0101,Late delivery today. I am unhappy this shipment was delayed. Order 6001.,2026-10-05T12:00:00.000Z,chat,6001
-c0102,The delivery was late and the package was delayed. Order 6002.,2026-10-06T12:00:00.000Z,chat,6002
-c0103,Late delivery today. I am unhappy this shipment was delayed. Order 6003.,2026-10-07T12:00:00.000Z,chat,6003
-c0104,The delivery was late and the package was delayed. Order 6004.,2026-10-08T12:00:00.000Z,chat,6004
-c0105,Late delivery today. I am unhappy this shipment was delayed. Order 6005.,2026-10-09T12:00:00.000Z,review,6005
-c0106,The delivery was late and the package was delayed. Order 6006.,2026-10-10T12:00:00.000Z,review,6006
-c0107,Late delivery today. I am unhappy this shipment was delayed. Order 6007.,2026-10-11T12:00:00.000Z,review,6007
-c0108,The delivery was late and the package was delayed. Order 6008.,2026-10-05T12:00:00.000Z,review,6008
-c0109,Late delivery today. I am unhappy this shipment was delayed. Order 6009.,2026-10-06T12:00:00.000Z,review,6009
-c0110,The delivery was late and the package was delayed. Order 6010.,2026-10-07T12:00:00.000Z,review,6010
-c0111,Late delivery today. I am unhappy this shipment was delayed. Order 6011.,2026-10-08T12:00:00.000Z,review,6011
-c0112,The delivery was late and the package was delayed. Order 6012.,2026-10-09T12:00:00.000Z,review,6012
-c0113,Late delivery today. I am unhappy this shipment was delayed. Order 6013.,2026-10-10T12:00:00.000Z,review,6013
-c0114,The delivery was late and the package was delayed. Order 6014.,2026-10-11T12:00:00.000Z,review,6014
-c0115,Late delivery today. I am unhappy this shipment was delayed. Order 6015.,2026-10-05T12:00:00.000Z,review,6015
-c0116,The delivery was late and the package was delayed. Order 6016.,2026-10-06T12:00:00.000Z,review,6016
-c0117,Late delivery today. I am unhappy this shipment was delayed. Order 6017.,2026-10-07T12:00:00.000Z,review,6017
-c0118,The delivery was late and the package was delayed. Order 6018.,2026-10-08T12:00:00.000Z,review,6018
-c0119,Late delivery today. I am unhappy this shipment was delayed. Order 6019.,2026-10-09T12:00:00.000Z,review,6019
-c0120,The delivery was late and the package was delayed. Order 6020.,2026-10-10T12:00:00.000Z,review,6020
-c0121,My package was damaged. The product is cracked. Order 6021.,2026-10-11T12:00:00.000Z,social,6021
-c0122,The item arrived damaged and broken. Order 6022.,2026-10-05T12:00:00.000Z,social,6022
-c0123,My package was damaged. The product is cracked. Order 6023.,2026-10-06T12:00:00.000Z,social,6023
-c0124,The item arrived damaged and broken. Order 6024.,2026-10-07T12:00:00.000Z,social,6024
-c0125,My package was damaged. The product is cracked. Order 6025.,2026-10-08T12:00:00.000Z,social,6025
-c0126,The item arrived damaged and broken. Order 6026.,2026-10-09T12:00:00.000Z,social,6026
-c0127,My package was damaged. The product is cracked. Order 6027.,2026-10-10T12:00:00.000Z,social,6027
-c0128,The item arrived damaged and broken. Order 6028.,2026-10-11T12:00:00.000Z,social,6028
-c0129,My package was damaged. The product is cracked. Order 6029.,2026-10-05T12:00:00.000Z,social,6029
-c0130,The item arrived damaged and broken. Order 6030.,2026-10-06T12:00:00.000Z,social,6030
-c0131,My package was damaged. The product is cracked. Order 6031.,2026-10-07T12:00:00.000Z,social,6031
-c0132,The item arrived damaged and broken. Order 6032.,2026-10-08T12:00:00.000Z,social,6032
-c0133,My package was damaged. The product is cracked. Order 6033.,2026-10-09T12:00:00.000Z,social,6033
-c0134,The item arrived damaged and broken. Order 6034.,2026-10-10T12:00:00.000Z,social,6034
-c0135,My package was damaged. The product is cracked. Order 6035.,2026-10-11T12:00:00.000Z,support portal,6035
-c0136,The item arrived damaged and broken. Order 6036.,2026-10-05T12:00:00.000Z,support portal,6036
-c0137,The refund has not arrived and I need the refund processed. Order 6037.,2026-10-06T12:00:00.000Z,support portal,6037
-c0138,I am still waiting on my refund. Order 6038.,2026-10-07T12:00:00.000Z,support portal,6038
-c0139,The refund has not arrived and I need the refund processed. Order 6039.,2026-10-08T12:00:00.000Z,support portal,6039
-c0140,I am still waiting on my refund. Order 6040.,2026-10-09T12:00:00.000Z,support portal,6040
-c0141,The refund has not arrived and I need the refund processed. Order 6041.,2026-10-10T12:00:00.000Z,support portal,6041
-c0142,I am still waiting on my refund. Order 6042.,2026-10-11T12:00:00.000Z,support portal,6042
-c0143,The refund has not arrived and I need the refund processed. Order 6043.,2026-10-05T12:00:00.000Z,support portal,6043
-c0144,I am still waiting on my refund. Order 6044.,2026-10-06T12:00:00.000Z,support portal,6044
-c0145,The refund has not arrived and I need the refund processed. Order 6045.,2026-10-07T12:00:00.000Z,support portal,6045
-c0146,I am still waiting on my refund. Order 6046.,2026-10-08T12:00:00.000Z,phone,6046
-c0147,The refund has not arrived and I need the refund processed. Order 6047.,2026-10-09T12:00:00.000Z,phone,6047
-c0148,I am still waiting on my refund. Order 6048.,2026-10-10T12:00:00.000Z,phone,6048
-c0149,This is the wrong item. I received an incorrect item. Order 6049.,2026-10-11T12:00:00.000Z,phone,6049
-c0150,You sent the wrong item. This is not what I ordered. Order 6050.,2026-10-05T12:00:00.000Z,phone,6050
-c0151,This is the wrong item. I received an incorrect item. Order 6051.,2026-10-06T12:00:00.000Z,phone,6051
-c0152,You sent the wrong item. This is not what I ordered. Order 6052.,2026-10-07T12:00:00.000Z,phone,6052
-c0153,This is the wrong item. I received an incorrect item. Order 6053.,2026-10-08T12:00:00.000Z,phone,6053
-c0154,The support agent was rude and customer service did not help. Order 6054.,2026-10-09T12:00:00.000Z,phone,6054
-c0155,Customer service was rude when I asked for help. Order 6055.,2026-10-10T12:00:00.000Z,phone,6055
-c0156,The support agent was rude and customer service did not help. Order 6056.,2026-10-11T12:00:00.000Z,phone,6056
-c0157,Customer service was rude when I asked for help. Order 6057.,2026-10-05T12:00:00.000Z,phone,6057
-c0158,You sent the wrong item. This is not what I ordered.,2026-10-06T12:00:00.000Z,phone,
-c0159,Customer service was rude when I asked for help.,2026-10-06T12:00:00.000Z,phone,
+c0001,The carrier marked Order 5001 as delayed. This late delivery has left us without the item for work.,2026-08-31T10:06:18.000Z,email,5001
+c0002,Just checking in because Order 5002 still has not shown up. The delivery is late again.,2026-09-01T15:23:29.000Z,email,5002
+c0003,Order 5003 missed the delivery window. It is now a full day late.,2026-09-02T09:40:40.000Z,email,5003
+c0004,Our office was closed waiting on Order 5004. The late delivery means we cannot finish the setup.,2026-09-03T14:57:51.000Z,email,5004
+c0005,Please look at Order 5005. The tracking has not moved and the delivery is late.,2026-09-04T08:14:02.000Z,email,5005
+c0006,"Hi, Order 5006 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-09-05T13:31:13.000Z,email,5006
+c0007,The carrier marked Order 5007 as delayed. This late delivery has left us without the item for work.,2026-09-06T18:48:24.000Z,email,5007
+c0008,Just checking in because Order 5008 still has not shown up. The delivery is late again.,2026-08-31T12:05:35.000Z,email,5008
+c0009,Order 5009 missed the delivery window. It is now a full day late.,2026-09-01T17:22:46.000Z,email,5009
+c0010,There is a crack across the item in Order 5010. I cannot use something that arrived damaged.,2026-09-02T11:39:57.000Z,email,5010
+c0011,Order 5011 was wet when it arrived and the product is damaged.,2026-09-03T16:56:08.000Z,email,5011
+c0012,Order 5012 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-09-04T10:13:19.000Z,email,5012
+c0013,I opened Order 5013 and the product is broken. It looks damaged from the trip.,2026-09-05T15:30:30.000Z,email,5013
+c0014,The glass in Order 5014 is cracked. Please treat this as a damaged item.,2026-09-06T09:47:41.000Z,email,5014
+c0015,Order 5015 came with a torn carton. The contents are damaged and one piece is broken.,2026-08-31T14:04:52.000Z,email,5015
+c0016,There is a crack across the item in Order 5016. I cannot use something that arrived damaged.,2026-09-01T08:21:03.000Z,email,5016
+c0017,Order 5017 was wet when it arrived and the product is damaged.,2026-09-02T13:38:14.000Z,email,5017
+c0018,I returned Order 5018 ten days ago and I am still waiting on the refund.,2026-09-03T18:55:25.000Z,email,5018
+c0019,The refund for Order 5019 has not reached my card. Can you check the status?,2026-09-04T12:12:36.000Z,email,5019
+c0020,"Order 5020 was cancelled, but the refund is still missing.",2026-09-05T17:29:47.000Z,email,5020
+c0021,Support told me the refund for Order 5021 was sent last week. It is not there.,2026-09-06T11:46:58.000Z,email,5021
+c0022,I need the refund from Order 5022 before I can place a replacement.,2026-08-31T16:03:09.000Z,email,5022
+c0023,Following up on Order 5023. The return was accepted and the refund has not posted.,2026-09-01T10:20:20.000Z,email,5023
+c0024,Order 5024 is the wrong item. I ordered a different size and colour.,2026-09-02T15:37:31.000Z,email,5024
+c0025,What arrived for Order 5025 is the wrong item. The label does not match my order.,2026-09-03T09:54:42.000Z,email,5025
+c0026,I received an incorrect item on Order 5026. This is the wrong item entirely.,2026-09-04T14:11:53.000Z,email,5026
+c0027,Order 5027 contains the wrong item. The sku on the packing slip is not what I bought.,2026-09-05T08:28:04.000Z,email,5027
+c0028,Please arrange a swap for Order 5028. You sent the wrong item.,2026-09-06T13:45:15.000Z,email,5028
+c0029,The box for Order 5029 had someone else's product. It is the wrong item.,2026-08-31T18:02:26.000Z,email,5029
+c0030,Order 5030 is the wrong item. I ordered a different size and colour.,2026-09-01T12:19:37.000Z,email,5030
+c0031,What arrived for Order 5031 is the wrong item. The label does not match my order.,2026-09-02T17:36:48.000Z,email,5031
+c0032,Customer service kept transferring me about Order 5032 and nobody followed up.,2026-09-03T11:53:59.000Z,email,5032
+c0033,I asked for help with Order 5033 and the support agent was rude about the wait.,2026-09-04T16:10:10.000Z,email,5033
+c0034,Customer service told me to reorder Order 5034 instead of fixing it.,2026-09-05T10:27:21.000Z,email,5034
+c0035,"The note on Order 5035 says resolved, but customer service never replied to me.",2026-09-06T15:44:32.000Z,email,5035
+c0036,I am wondering why customer service closed Order 5036 without an answer.,2026-08-31T09:01:43.000Z,email,5036
+c0037,The support agent on Order 5037 was rude and ended the chat.,2026-09-01T14:18:54.000Z,email,5037
+c0038,Just checking in because Order 5201 still has not shown up. The delivery is late again.,2026-09-07T08:35:05.000Z,email,5201
+c0039,Order 5202 missed the delivery window. It is now a full day late.,2026-09-08T13:52:16.000Z,email,5202
+c0040,Our office was closed waiting on Order 5203. The late delivery means we cannot finish the setup.,2026-09-09T18:09:27.000Z,email,5203
+c0041,Please look at Order 5204. The tracking has not moved and the delivery is late.,2026-09-10T12:26:38.000Z,email,5204
+c0042,"Hi, Order 5205 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-09-11T17:43:49.000Z,email,5205
+c0043,The carrier marked Order 5206 as delayed. This late delivery has left us without the item for work.,2026-09-12T11:00:00.000Z,email,5206
+c0044,Just checking in because Order 5207 still has not shown up. The delivery is late again.,2026-09-13T16:17:11.000Z,email,5207
+c0045,Order 5208 missed the delivery window. It is now a full day late.,2026-09-07T10:34:22.000Z,email,5208
+c0046,Our office was closed waiting on Order 5209. The late delivery means we cannot finish the setup.,2026-09-08T15:51:33.000Z,email,5209
+c0047,Please look at Order 5210. The tracking has not moved and the delivery is late.,2026-09-09T09:08:44.000Z,email,5210
+c0048,Order 5211 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-09-10T14:25:55.000Z,email,5211
+c0049,I opened Order 5212 and the product is broken. It looks damaged from the trip.,2026-09-11T08:42:06.000Z,email,5212
+c0050,The glass in Order 5213 is cracked. Please treat this as a damaged item.,2026-09-12T13:59:17.000Z,email,5213
+c0051,Order 5214 came with a torn carton. The contents are damaged and one piece is broken.,2026-09-13T18:16:28.000Z,email,5214
+c0052,There is a crack across the item in Order 5215. I cannot use something that arrived damaged.,2026-09-07T12:33:39.000Z,email,5215
+c0053,Order 5216 was wet when it arrived and the product is damaged.,2026-09-08T17:50:50.000Z,email,5216
+c0054,Order 5217 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-09-09T11:07:01.000Z,email,5217
+c0055,I opened Order 5218 and the product is broken. It looks damaged from the trip.,2026-09-10T16:24:12.000Z,email,5218
+c0056,"Order 5219 was cancelled, but the refund is still missing.",2026-09-11T10:41:23.000Z,email,5219
+c0057,Support told me the refund for Order 5220 was sent last week. It is not there.,2026-09-12T15:58:34.000Z,email,5220
+c0058,I need the refund from Order 5221 before I can place a replacement.,2026-09-13T09:15:45.000Z,email,5221
+c0059,Following up on Order 5222. The return was accepted and the refund has not posted.,2026-09-07T14:32:56.000Z,email,5222
+c0060,I returned Order 5223 ten days ago and I am still waiting on the refund.,2026-09-08T08:49:07.000Z,email,5223
+c0061,The refund for Order 5224 has not reached my card. Can you check the status?,2026-09-09T13:06:18.000Z,email,5224
+c0062,"Order 5225 was cancelled, but the refund is still missing.",2026-09-10T18:23:29.000Z,email,5225
+c0063,Order 5226 contains the wrong item. The sku on the packing slip is not what I bought.,2026-09-11T12:40:40.000Z,email,5226
+c0064,Please arrange a swap for Order 5227. You sent the wrong item.,2026-09-12T17:57:51.000Z,email,5227
+c0065,The box for Order 5228 had someone else's product. It is the wrong item.,2026-09-13T11:14:02.000Z,email,5228
+c0066,Order 5229 is the wrong item. I ordered a different size and colour.,2026-09-07T16:31:13.000Z,email,5229
+c0067,What arrived for Order 5230 is the wrong item. The label does not match my order.,2026-09-08T10:48:24.000Z,email,5230
+c0068,I received an incorrect item on Order 5231. This is the wrong item entirely.,2026-09-09T15:05:35.000Z,email,5231
+c0069,Order 5232 contains the wrong item. The sku on the packing slip is not what I bought.,2026-09-10T09:22:46.000Z,email,5232
+c0070,Customer service told me to reorder Order 5233 instead of fixing it.,2026-09-11T14:39:57.000Z,email,5233
+c0071,"The note on Order 5234 says resolved, but customer service never replied to me.",2026-09-12T08:56:08.000Z,email,5234
+c0072,I am wondering why customer service closed Order 5235 without an answer.,2026-09-13T13:13:19.000Z,email,5235
+c0073,The support agent on Order 5236 was rude and ended the chat.,2026-09-07T18:30:30.000Z,email,5236
+c0074,Customer service kept transferring me about Order 5237 and nobody followed up.,2026-09-08T12:47:41.000Z,email,5237
+c0075,I asked for help with Order 5238 and the support agent was rude about the wait.,2026-09-09T17:04:52.000Z,email,5238
+c0076,Customer service told me to reorder Order 5239 instead of fixing it.,2026-09-10T11:21:03.000Z,email,5239
+c0077,Please look at Order 5401. The tracking has not moved and the delivery is late.,2026-09-14T16:38:14.000Z,email,5401
+c0078,"Hi, Order 5402 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-09-15T10:55:25.000Z,email,5402
+c0079,The carrier marked Order 5403 as delayed. This late delivery has left us without the item for work.,2026-09-16T15:12:36.000Z,email,5403
+c0080,Just checking in because Order 5404 still has not shown up. The delivery is late again.,2026-09-17T09:29:47.000Z,email,5404
+c0081,Order 5405 missed the delivery window. It is now a full day late.,2026-09-18T14:46:58.000Z,email,5405
+c0082,Our office was closed waiting on Order 5406. The late delivery means we cannot finish the setup.,2026-09-19T08:03:09.000Z,email,5406
+c0083,Please look at Order 5407. The tracking has not moved and the delivery is late.,2026-09-20T13:20:20.000Z,email,5407
+c0084,"Hi, Order 5408 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-09-14T18:37:31.000Z,email,5408
+c0085,The carrier marked Order 5409 as delayed. This late delivery has left us without the item for work.,2026-09-15T12:54:42.000Z,email,5409
+c0086,Just checking in because Order 5410 still has not shown up. The delivery is late again.,2026-09-16T17:11:53.000Z,email,5410
+c0087,Order 5411 missed the delivery window. It is now a full day late.,2026-09-17T11:28:04.000Z,email,5411
+c0088,There is a crack across the item in Order 5412. I cannot use something that arrived damaged.,2026-09-18T16:45:15.000Z,email,5412
+c0089,Order 5413 was wet when it arrived and the product is damaged.,2026-09-19T10:02:26.000Z,email,5413
+c0090,Order 5414 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-09-20T15:19:37.000Z,email,5414
+c0091,I opened Order 5415 and the product is broken. It looks damaged from the trip.,2026-09-14T09:36:48.000Z,email,5415
+c0092,The glass in Order 5416 is cracked. Please treat this as a damaged item.,2026-09-15T14:53:59.000Z,email,5416
+c0093,Order 5417 came with a torn carton. The contents are damaged and one piece is broken.,2026-09-16T08:10:10.000Z,email,5417
+c0094,There is a crack across the item in Order 5418. I cannot use something that arrived damaged.,2026-09-17T13:27:21.000Z,email,5418
+c0095,Order 5419 was wet when it arrived and the product is damaged.,2026-09-18T18:44:32.000Z,email,5419
+c0096,Order 5420 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-09-19T12:01:43.000Z,email,5420
+c0097,The refund for Order 5421 has not reached my card. Can you check the status?,2026-09-20T17:18:54.000Z,email,5421
+c0098,"Order 5422 was cancelled, but the refund is still missing.",2026-09-14T11:35:05.000Z,email,5422
+c0099,Support told me the refund for Order 5423 was sent last week. It is not there.,2026-09-15T16:52:16.000Z,email,5423
+c0100,I need the refund from Order 5424 before I can place a replacement.,2026-09-16T10:09:27.000Z,email,5424
+c0101,Following up on Order 5425. The return was accepted and the refund has not posted.,2026-09-17T15:26:38.000Z,email,5425
+c0102,I returned Order 5426 ten days ago and I am still waiting on the refund.,2026-09-18T09:43:49.000Z,email,5426
+c0103,What arrived for Order 5427 is the wrong item. The label does not match my order.,2026-09-19T14:00:00.000Z,email,5427
+c0104,I received an incorrect item on Order 5428. This is the wrong item entirely.,2026-09-20T08:17:11.000Z,email,5428
+c0105,Order 5429 contains the wrong item. The sku on the packing slip is not what I bought.,2026-09-14T13:34:22.000Z,email,5429
+c0106,Please arrange a swap for Order 5430. You sent the wrong item.,2026-09-15T18:51:33.000Z,email,5430
+c0107,The box for Order 5431 had someone else's product. It is the wrong item.,2026-09-16T12:08:44.000Z,email,5431
+c0108,Order 5432 is the wrong item. I ordered a different size and colour.,2026-09-17T17:25:55.000Z,email,5432
+c0109,What arrived for Order 5433 is the wrong item. The label does not match my order.,2026-09-18T11:42:06.000Z,email,5433
+c0110,I received an incorrect item on Order 5434. This is the wrong item entirely.,2026-09-19T16:59:17.000Z,email,5434
+c0111,I asked for help with Order 5435 and the support agent was rude about the wait.,2026-09-20T10:16:28.000Z,email,5435
+c0112,Customer service told me to reorder Order 5436 instead of fixing it.,2026-09-14T15:33:39.000Z,email,5436
+c0113,"The note on Order 5437 says resolved, but customer service never replied to me.",2026-09-15T09:50:50.000Z,email,5437
+c0114,I am wondering why customer service closed Order 5438 without an answer.,2026-09-16T14:07:01.000Z,email,5438
+c0115,The support agent on Order 5439 was rude and ended the chat.,2026-09-17T08:24:12.000Z,email,5439
+c0116,Customer service kept transferring me about Order 5440 and nobody followed up.,2026-09-18T13:41:23.000Z,email,5440
+c0117,Order 5601 missed the delivery window. It is now a full day late.,2026-09-21T18:58:34.000Z,email,5601
+c0118,Our office was closed waiting on Order 5602. The late delivery means we cannot finish the setup.,2026-09-22T12:15:45.000Z,email,5602
+c0119,Please look at Order 5603. The tracking has not moved and the delivery is late.,2026-09-23T17:32:56.000Z,email,5603
+c0120,"Hi, Order 5604 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-09-24T11:49:07.000Z,email,5604
+c0121,The carrier marked Order 5605 as delayed. This late delivery has left us without the item for work.,2026-09-25T16:06:18.000Z,email,5605
+c0122,Just checking in because Order 5606 still has not shown up. The delivery is late again.,2026-09-26T10:23:29.000Z,email,5606
+c0123,Order 5607 missed the delivery window. It is now a full day late.,2026-09-27T15:40:40.000Z,email,5607
+c0124,Our office was closed waiting on Order 5608. The late delivery means we cannot finish the setup.,2026-09-21T09:57:51.000Z,email,5608
+c0125,Please look at Order 5609. The tracking has not moved and the delivery is late.,2026-09-22T14:14:02.000Z,email,5609
+c0126,"Hi, Order 5610 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-09-23T08:31:13.000Z,email,5610
+c0127,I opened Order 5611 and the product is broken. It looks damaged from the trip.,2026-09-24T13:48:24.000Z,email,5611
+c0128,The glass in Order 5612 is cracked. Please treat this as a damaged item.,2026-09-25T18:05:35.000Z,email,5612
+c0129,Order 5613 came with a torn carton. The contents are damaged and one piece is broken.,2026-09-26T12:22:46.000Z,email,5613
+c0130,There is a crack across the item in Order 5614. I cannot use something that arrived damaged.,2026-09-27T17:39:57.000Z,email,5614
+c0131,Order 5615 was wet when it arrived and the product is damaged.,2026-09-21T11:56:08.000Z,email,5615
+c0132,Order 5616 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-09-22T16:13:19.000Z,email,5616
+c0133,I opened Order 5617 and the product is broken. It looks damaged from the trip.,2026-09-23T10:30:30.000Z,email,5617
+c0134,The glass in Order 5618 is cracked. Please treat this as a damaged item.,2026-09-24T15:47:41.000Z,email,5618
+c0135,Support told me the refund for Order 5619 was sent last week. It is not there.,2026-09-25T09:04:52.000Z,email,5619
+c0136,I need the refund from Order 5620 before I can place a replacement.,2026-09-26T14:21:03.000Z,email,5620
+c0137,Following up on Order 5621. The return was accepted and the refund has not posted.,2026-09-27T08:38:14.000Z,email,5621
+c0138,I returned Order 5622 ten days ago and I am still waiting on the refund.,2026-09-21T13:55:25.000Z,email,5622
+c0139,The refund for Order 5623 has not reached my card. Can you check the status?,2026-09-22T18:12:36.000Z,email,5623
+c0140,"Order 5624 was cancelled, but the refund is still missing.",2026-09-23T12:29:47.000Z,email,5624
+c0141,Support told me the refund for Order 5625 was sent last week. It is not there.,2026-09-24T17:46:58.000Z,email,5625
+c0142,Please arrange a swap for Order 5626. You sent the wrong item.,2026-09-25T11:03:09.000Z,email,5626
+c0143,The box for Order 5627 had someone else's product. It is the wrong item.,2026-09-26T16:20:20.000Z,email,5627
+c0144,Order 5628 is the wrong item. I ordered a different size and colour.,2026-09-27T10:37:31.000Z,email,5628
+c0145,What arrived for Order 5629 is the wrong item. The label does not match my order.,2026-09-21T15:54:42.000Z,email,5629
+c0146,I received an incorrect item on Order 5630. This is the wrong item entirely.,2026-09-22T09:11:53.000Z,email,5630
+c0147,Order 5631 contains the wrong item. The sku on the packing slip is not what I bought.,2026-09-23T14:28:04.000Z,email,5631
+c0148,Please arrange a swap for Order 5632. You sent the wrong item.,2026-09-24T08:45:15.000Z,email,5632
+c0149,The box for Order 5633 had someone else's product. It is the wrong item.,2026-09-25T13:02:26.000Z,email,5633
+c0150,I am wondering why customer service closed Order 5634 without an answer.,2026-09-26T18:19:37.000Z,email,5634
+c0151,The support agent on Order 5635 was rude and ended the chat.,2026-09-27T12:36:48.000Z,email,5635
+c0152,Customer service kept transferring me about Order 5636 and nobody followed up.,2026-09-21T17:53:59.000Z,email,5636
+c0153,I asked for help with Order 5637 and the support agent was rude about the wait.,2026-09-22T11:10:10.000Z,email,5637
+c0154,Customer service told me to reorder Order 5638 instead of fixing it.,2026-09-23T16:27:21.000Z,email,5638
+c0155,"The note on Order 5639 says resolved, but customer service never replied to me.",2026-09-24T10:44:32.000Z,email,5639
+c0156,I am wondering why customer service closed Order 5640 without an answer.,2026-09-25T15:01:43.000Z,email,5640
+c0157,The carrier marked Order 5801 as delayed. This late delivery has left us without the item for work.,2026-09-28T09:18:54.000Z,email,5801
+c0158,Just checking in because Order 5802 still has not shown up. The delivery is late again.,2026-09-29T14:35:05.000Z,email,5802
+c0159,Order 5803 missed the delivery window. It is now a full day late.,2026-09-30T08:52:16.000Z,email,5803
+c0160,Our office was closed waiting on Order 5804. The late delivery means we cannot finish the setup.,2026-10-01T13:09:27.000Z,email,5804
+c0161,Please look at Order 5805. The tracking has not moved and the delivery is late.,2026-10-02T18:26:38.000Z,email,5805
+c0162,"Hi, Order 5806 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-10-03T12:43:49.000Z,email,5806
+c0163,The carrier marked Order 5807 as delayed. This late delivery has left us without the item for work.,2026-10-04T17:00:00.000Z,email,5807
+c0164,Just checking in because Order 5808 still has not shown up. The delivery is late again.,2026-09-28T11:17:11.000Z,email,5808
+c0165,Order 5809 missed the delivery window. It is now a full day late.,2026-09-29T16:34:22.000Z,email,5809
+c0166,Our office was closed waiting on Order 5810. The late delivery means we cannot finish the setup.,2026-09-30T10:51:33.000Z,email,5810
+c0167,Please look at Order 5811. The tracking has not moved and the delivery is late.,2026-10-01T15:08:44.000Z,email,5811
+c0168,"Hi, Order 5812 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-10-02T09:25:55.000Z,email,5812
+c0169,The carrier marked Order 5813 as delayed. This late delivery has left us without the item for work.,2026-10-03T14:42:06.000Z,email,5813
+c0170,The glass in Order 5814 is cracked. Please treat this as a damaged item.,2026-10-04T08:59:17.000Z,email,5814
+c0171,Order 5815 came with a torn carton. The contents are damaged and one piece is broken.,2026-09-28T13:16:28.000Z,email,5815
+c0172,There is a crack across the item in Order 5816. I cannot use something that arrived damaged.,2026-09-29T18:33:39.000Z,email,5816
+c0173,Order 5817 was wet when it arrived and the product is damaged.,2026-09-30T12:50:50.000Z,email,5817
+c0174,Order 5818 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-10-01T17:07:01.000Z,email,5818
+c0175,I opened Order 5819 and the product is broken. It looks damaged from the trip.,2026-10-02T11:24:12.000Z,email,5819
+c0176,The glass in Order 5820 is cracked. Please treat this as a damaged item.,2026-10-03T16:41:23.000Z,email,5820
+c0177,Order 5821 came with a torn carton. The contents are damaged and one piece is broken.,2026-10-04T10:58:34.000Z,email,5821
+c0178,There is a crack across the item in Order 5822. I cannot use something that arrived damaged.,2026-09-28T15:15:45.000Z,email,5822
+c0179,Order 5823 was wet when it arrived and the product is damaged.,2026-09-29T09:32:56.000Z,email,5823
+c0180,I returned Order 5824 ten days ago and I am still waiting on the refund.,2026-09-30T14:49:07.000Z,email,5824
+c0181,The refund for Order 5825 has not reached my card. Can you check the status?,2026-10-01T08:06:18.000Z,email,5825
+c0182,"Order 5826 was cancelled, but the refund is still missing.",2026-10-02T13:23:29.000Z,email,5826
+c0183,Support told me the refund for Order 5827 was sent last week. It is not there.,2026-10-03T18:40:40.000Z,email,5827
+c0184,I need the refund from Order 5828 before I can place a replacement.,2026-10-04T12:57:51.000Z,email,5828
+c0185,Following up on Order 5829. The return was accepted and the refund has not posted.,2026-09-28T17:14:02.000Z,email,5829
+c0186,I returned Order 5830 ten days ago and I am still waiting on the refund.,2026-09-29T11:31:13.000Z,email,5830
+c0187,The refund for Order 5831 has not reached my card. Can you check the status?,2026-09-30T16:48:24.000Z,email,5831
+c0188,I received an incorrect item on Order 5832. This is the wrong item entirely.,2026-10-01T10:05:35.000Z,email,5832
+c0189,Order 5833 contains the wrong item. The sku on the packing slip is not what I bought.,2026-10-02T15:22:46.000Z,email,5833
+c0190,Please arrange a swap for Order 5834. You sent the wrong item.,2026-10-03T09:39:57.000Z,email,5834
+c0191,The box for Order 5835 had someone else's product. It is the wrong item.,2026-10-04T14:56:08.000Z,email,5835
+c0192,Order 5836 is the wrong item. I ordered a different size and colour.,2026-09-28T08:13:19.000Z,email,5836
+c0193,What arrived for Order 5837 is the wrong item. The label does not match my order.,2026-09-29T13:30:30.000Z,email,5837
+c0194,I received an incorrect item on Order 5838. This is the wrong item entirely.,2026-09-30T18:47:41.000Z,email,5838
+c0195,I asked for help with Order 5839 and the support agent was rude about the wait.,2026-10-01T12:04:52.000Z,email,5839
+c0196,Customer service told me to reorder Order 5840 instead of fixing it.,2026-10-02T17:21:03.000Z,email,5840
+c0197,"The note on Order 5841 says resolved, but customer service never replied to me.",2026-10-03T11:38:14.000Z,email,5841
+c0198,I am wondering why customer service closed Order 5842 without an answer.,2026-10-04T16:55:25.000Z,email,5842
+c0199,The support agent on Order 5843 was rude and ended the chat.,2026-09-28T10:12:36.000Z,email,5843
+c0200,Customer service kept transferring me about Order 5844 and nobody followed up.,2026-09-29T15:29:47.000Z,email,5844
+c0201,Order 6001 missed the delivery window. It is now a full day late.,2026-10-05T09:46:58.000Z,email,6001
+c0202,Our office was closed waiting on Order 6002. The late delivery means we cannot finish the setup.,2026-10-06T14:03:09.000Z,email,6002
+c0203,Please look at Order 6003. The tracking has not moved and the delivery is late.,2026-10-07T08:20:20.000Z,email,6003
+c0204,"Hi, Order 6004 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-10-08T13:37:31.000Z,email,6004
+c0205,The carrier marked Order 6005 as delayed. This late delivery has left us without the item for work.,2026-10-09T18:54:42.000Z,email,6005
+c0206,Just checking in because Order 6006 still has not shown up. The delivery is late again.,2026-10-10T12:11:53.000Z,email,6006
+c0207,Order 6007 missed the delivery window. It is now a full day late.,2026-10-11T17:28:04.000Z,email,6007
+c0208,Our office was closed waiting on Order 6008. The late delivery means we cannot finish the setup.,2026-10-05T11:45:15.000Z,email,6008
+c0209,Please look at Order 6009. The tracking has not moved and the delivery is late.,2026-10-06T16:02:26.000Z,email,6009
+c0210,"Hi, Order 6010 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-10-07T10:19:37.000Z,email,6010
+c0211,The carrier marked Order 6011 as delayed. This late delivery has left us without the item for work.,2026-10-08T15:36:48.000Z,email,6011
+c0212,Just checking in because Order 6012 still has not shown up. The delivery is late again.,2026-10-09T09:53:59.000Z,email,6012
+c0213,Order 6013 missed the delivery window. It is now a full day late.,2026-10-10T14:10:10.000Z,email,6013
+c0214,Our office was closed waiting on Order 6014. The late delivery means we cannot finish the setup.,2026-10-11T08:27:21.000Z,email,6014
+c0215,Please look at Order 6015. The tracking has not moved and the delivery is late.,2026-10-05T13:44:32.000Z,email,6015
+c0216,"Hi, Order 6016 was due Tuesday and the delivery was late. Can you tell me where it is?",2026-10-06T18:01:43.000Z,email,6016
+c0217,The carrier marked Order 6017 as delayed. This late delivery has left us without the item for work.,2026-10-07T12:18:54.000Z,email,6017
+c0218,Just checking in because Order 6018 still has not shown up. The delivery is late again.,2026-10-08T17:35:05.000Z,email,6018
+c0219,Order 6019 came with a torn carton. The contents are damaged and one piece is broken.,2026-10-09T11:52:16.000Z,email,6019
+c0220,There is a crack across the item in Order 6020. I cannot use something that arrived damaged.,2026-10-10T16:09:27.000Z,email,6020
+c0221,Order 6021 was wet when it arrived and the product is damaged.,2026-10-11T10:26:38.000Z,email,6021
+c0222,Order 6022 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-10-05T15:43:49.000Z,email,6022
+c0223,I opened Order 6023 and the product is broken. It looks damaged from the trip.,2026-10-06T09:00:00.000Z,email,6023
+c0224,The glass in Order 6024 is cracked. Please treat this as a damaged item.,2026-10-07T14:17:11.000Z,email,6024
+c0225,Order 6025 came with a torn carton. The contents are damaged and one piece is broken.,2026-10-08T08:34:22.000Z,email,6025
+c0226,There is a crack across the item in Order 6026. I cannot use something that arrived damaged.,2026-10-09T13:51:33.000Z,email,6026
+c0227,Order 6027 was wet when it arrived and the product is damaged.,2026-10-10T18:08:44.000Z,email,6027
+c0228,Order 6028 arrived damaged. The corner of the box was crushed and the item is cracked.,2026-10-11T12:25:55.000Z,email,6028
+c0229,I opened Order 6029 and the product is broken. It looks damaged from the trip.,2026-10-05T17:42:06.000Z,email,6029
+c0230,The glass in Order 6030 is cracked. Please treat this as a damaged item.,2026-10-06T11:59:17.000Z,email,6030
+c0231,Order 6031 came with a torn carton. The contents are damaged and one piece is broken.,2026-10-07T16:16:28.000Z,email,6031
+c0232,There is a crack across the item in Order 6032. I cannot use something that arrived damaged.,2026-10-08T10:33:39.000Z,email,6032
+c0233,Following up on Order 6033. The return was accepted and the refund has not posted.,2026-10-09T15:50:50.000Z,email,6033
+c0234,I returned Order 6034 ten days ago and I am still waiting on the refund.,2026-10-10T09:07:01.000Z,email,6034
+c0235,The refund for Order 6035 has not reached my card. Can you check the status?,2026-10-11T14:24:12.000Z,email,6035
+c0236,"Order 6036 was cancelled, but the refund is still missing.",2026-10-05T08:41:23.000Z,email,6036
+c0237,Support told me the refund for Order 6037 was sent last week. It is not there.,2026-10-06T13:58:34.000Z,email,6037
+c0238,I need the refund from Order 6038 before I can place a replacement.,2026-10-07T18:15:45.000Z,email,6038
+c0239,Following up on Order 6039. The return was accepted and the refund has not posted.,2026-10-08T12:32:56.000Z,email,6039
+c0240,I returned Order 6040 ten days ago and I am still waiting on the refund.,2026-10-09T17:49:07.000Z,email,6040
+c0241,The refund for Order 6041 has not reached my card. Can you check the status?,2026-10-10T11:06:18.000Z,email,6041
+c0242,"Order 6042 was cancelled, but the refund is still missing.",2026-10-11T16:23:29.000Z,email,6042
+c0243,Support told me the refund for Order 6043 was sent last week. It is not there.,2026-10-05T10:40:40.000Z,email,6043
+c0244,Please arrange a swap for Order 6044. You sent the wrong item.,2026-10-06T15:57:51.000Z,email,6044
+c0245,The box for Order 6045 had someone else's product. It is the wrong item.,2026-10-07T09:14:02.000Z,email,6045
+c0246,Order 6046 is the wrong item. I ordered a different size and colour.,2026-10-08T14:31:13.000Z,email,6046
+c0247,What arrived for Order 6047 is the wrong item. The label does not match my order.,2026-10-09T08:48:24.000Z,email,6047
+c0248,I received an incorrect item on Order 6048. This is the wrong item entirely.,2026-10-10T13:05:35.000Z,email,6048
+c0249,Order 6049 contains the wrong item. The sku on the packing slip is not what I bought.,2026-10-11T18:22:46.000Z,email,6049
+c0250,Please arrange a swap for Order 6050. You sent the wrong item.,2026-10-05T12:39:57.000Z,email,6050
+c0251,The box for Order 6051 had someone else's product. It is the wrong item.,2026-10-06T17:56:08.000Z,email,6051
+c0252,I am wondering why customer service closed Order 6052 without an answer.,2026-10-07T11:13:19.000Z,email,6052
+c0253,The support agent on Order 6053 was rude and ended the chat.,2026-10-08T16:30:30.000Z,email,6053
+c0254,Customer service kept transferring me about Order 6054 and nobody followed up.,2026-10-09T10:47:41.000Z,email,6054
+c0255,I asked for help with Order 6055 and the support agent was rude about the wait.,2026-10-10T15:04:52.000Z,email,6055
+c0256,Customer service told me to reorder Order 6056 instead of fixing it.,2026-10-11T09:21:03.000Z,email,6056
+c0257,"The note on Order 6057 says resolved, but customer service never replied to me.",2026-10-05T14:38:14.000Z,email,6057
+c0258,I am wondering why customer service closed Order 6058 without an answer.,2026-10-06T08:55:25.000Z,email,6058

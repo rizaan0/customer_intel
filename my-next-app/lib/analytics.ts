@@ -12,15 +12,6 @@ export const ISSUE_COLORS: Record<string, string> = {
   other: "#a8a29e",
 };
 
-export const CHANNEL_COLORS: Record<string, string> = {
-  phone: "#0f766e",
-  email: "#0369a1",
-  chat: "#b45309",
-  review: "#9f1239",
-  social: "#7c3aed",
-  "support portal": "#44403c",
-};
-
 export type Filters = {
   week: string;
   issue: string;
@@ -33,6 +24,7 @@ export type ShareRow = {
   value: string;
   complaintCount: number;
   complaintShare: number;
+  orderCount: number;
   orderShare: number;
   lift: number;
   qualifies: boolean;
@@ -49,8 +41,6 @@ export type DashboardView = {
   trend: { issue: string; points: { week: string; count: number }[] }[];
   guide: number | null;
   shares: ShareRow[];
-  channels: { week: string; total: number; counts: { channel: string; count: number }[] }[];
-  channelNames: string[];
   heatmap: { issue: string; cells: { value: string; lift: number; complaintCount: number }[] }[];
   heatmapColumns: string[];
   sentiment: { issue: string; negative: number; neutral: number; positive: number }[];
@@ -63,7 +53,7 @@ export function readFilters(params: URLSearchParams, briefing: Briefing): Filter
   return {
     week: params.get("week") || briefing.latestWeek,
     issue: params.get("issue") || "",
-    channel: params.get("channel") || "",
+    channel: "",
     dimension: DIMENSIONS.includes(dimension as FactorDimension) ? (dimension as FactorDimension) : "warehouse",
     factor: params.get("factor") || "",
   };
@@ -118,8 +108,6 @@ export function buildView(briefing: Briefing, filters: Filters): DashboardView {
     trend,
     guide: guide && guide > 0 ? guide : null,
     shares,
-    channels: channelMix(briefing.records, weeks, filters),
-    channelNames: unique(briefing.records.map((record) => record.channel)),
     heatmap: heatRows(briefing.records, briefing.orderFacts, filters),
     heatmapColumns: unique(briefing.orderFacts.filter((order) => order.week === filters.week).map((order) => order[filters.dimension])),
     sentiment: byIssue(currentRows, "sentiment"),
@@ -195,6 +183,7 @@ function shareRows(records: ComplaintRecord[], orders: OrderFact[], dimension: F
         value,
         complaintCount,
         complaintShare,
+        orderCount,
         orderShare,
         lift,
         qualifies: complaintCount >= MIN_FACTOR_COUNT && lift >= MIN_LIFT,
@@ -202,24 +191,6 @@ function shareRows(records: ComplaintRecord[], orders: OrderFact[], dimension: F
     })
     .filter((row) => row.complaintCount > 0)
     .sort((a, b) => b.lift - a.lift || b.complaintCount - a.complaintCount);
-}
-
-function channelMix(records: ComplaintRecord[], weeks: string[], filters: Filters) {
-  const channels = unique(records.map((record) => record.channel));
-  return weeks.map((week) => {
-    const counts = channels.map((channel) => ({
-      channel,
-      count: records.filter(
-        (record) =>
-          record.week === week &&
-          record.channel === channel &&
-          (!filters.issue || record.issue === filters.issue) &&
-          (!filters.channel || record.channel === filters.channel) &&
-          (!filters.factor || record[filters.dimension] === filters.factor),
-      ).length,
-    }));
-    return { week, counts, total: counts.reduce((sum, item) => sum + item.count, 0) };
-  });
 }
 
 function heatRows(records: ComplaintRecord[], orders: OrderFact[], filters: Filters) {

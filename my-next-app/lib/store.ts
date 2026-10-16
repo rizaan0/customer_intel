@@ -10,6 +10,7 @@ const complaintsPath = path.join(dataDir, "complaints.csv");
 const ordersPath = path.join(dataDir, "orders.csv");
 const briefingPath = path.join(dataDir, "briefing.json");
 const connectionPath = path.join(dataDir, "connection.json");
+const mailListPath = path.join(dataDir, "mail-list.json");
 
 const COMPLAINT_HEADERS = ["id", "text", "created_at", "channel", "order_id"];
 const ORDER_HEADERS = ["order_id", "ordered_at", "product", "warehouse", "partner", "region"];
@@ -114,6 +115,23 @@ export function writeConnection(connection: InboxConnection) {
 
 export function clearConnection() {
   if (existsSync(connectionPath)) unlinkSync(connectionPath);
+}
+
+export function writeMailList(list: { fetchedAt: string; email: string; label: string; messages: Complaint[] }) {
+  mkdirSync(dataDir, { recursive: true });
+  const stored = {
+    fetchedAt: list.fetchedAt,
+    email: list.email,
+    label: list.label,
+    messages: list.messages.map((message) => ({
+      id: message.id,
+      text: message.text,
+      createdAt: message.createdAt,
+      channel: message.channel,
+      orderId: message.orderId,
+    })),
+  };
+  writeFileSync(mailListPath, JSON.stringify(stored, null, 2));
 }
 
 export function connectionStatus(): ConnectionStatus {

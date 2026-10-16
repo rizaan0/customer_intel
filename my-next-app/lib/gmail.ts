@@ -57,7 +57,21 @@ export async function importInbox(): Promise<number> {
   return complaints.length;
 }
 
-async function readOauth(connection: InboxConnection): Promise<Complaint[]> {
+export async function listConnectedMail(): Promise<Complaint[]> {
+  const connection = readConnection();
+  if (!connection) throw new Error("Connect a support inbox in Settings first.");
+  const complaints = connection.method === "oauth" ? await readOauth(connection, true) : await readImap(connection, true);
+  const byId = new Map<string, Complaint>();
+  for (const complaint of complaints) {
+    if (!complaint.id.startsWith("gmail-") || complaint.id === "gmail-") {
+      throw new Error("A message is missing a stable Gmail id, so the mail list is incomplete.");
+    }
+    byId.set(complaint.id, complaint);
+  }
+  return [...byId.values()];
+}
+
+async function readOauth(connection: InboxConnection, strict = false): Promise<Complaint[]> {
   if (!connection.refreshToken) throw new Error("The Gmail connection is missing a refresh token.");
   const token = await requestToken({
     refresh_token: connection.refreshToken,
@@ -73,23 +87,37 @@ async function readOauth(connection: InboxConnection): Promise<Complaint[]> {
     const page = await gmailGet<{ messages?: { id: string }[]; nextPageToken?: string }>(url.toString(), token.access_token);
     ids.push(...(page.messages ?? []).map((message) => message.id));
     pageToken = page.nextPageToken ?? "";
+    if (strict && pageToken && ids.length >= 200) {
+      throw new Error(`The ${connection.label} label has more than 200 messages. Narrow the label before creating a CSV.`);
+    }
   } while (pageToken && ids.length < 200);
 
+  if (strict && ids.some((id) => !id)) {
+    throw new Error("A message is missing a stable Gmail id, so the mail list is incomplete.");
+  }
+  const fetchIds = strict ? [...new Set(ids)] : ids;
   const complaints: Complaint[] = [];
-  for (const id of ids) {
+  for (const id of fetchIds) {
     const message = await gmailGet<{
       id: string;
       internalDate?: string;
       payload?: Parameters<typeof textFromGmailPayload>[0];
     }>(`https://gmail.googleapis.com/gmail/v1/users/me/messages/${id}?format=full`, token.access_token);
+    if (strict && !message.id) {
+      throw new Error("A message is missing a stable Gmail id, so the mail list is incomplete.");
+    }
     const { subject, body } = textFromGmailPayload(message.payload);
     const date = message.internalDate ? new Date(Number(message.internalDate)) : new Date();
-    complaints.push(complaintFromMail(message.id, subject, body, date));
+    const complaint = complaintFromMail(message.id, subject, body, date);
+    if (strict && !complaint.text.trim()) {
+      throw new Error("A message is missing its body, so the mail list is incomplete.");
+    }
+    complaints.push(complaint);
   }
   return complaints;
 }
 
-async function readImap(connection: InboxConnection): Promise<Complaint[]> {
+async function readImap(connection: InboxConnection, strict = false): Promise<Complaint[]> {
   if (!connection.appPassword) throw new Error("The app password is missing. Save it again in Settings.");
   const client = new ImapFlow({
     host: "imap.gmail.com",
@@ -107,12 +135,15 @@ async function readImap(connection: InboxConnection): Promise<Complaint[]> {
     try {
       if (!client.mailbox || client.mailbox.exists === 0) return [];
       const complaints: Complaint[] = [];
-      for await (const message of client.fetch("1:*", { source: true, uid: true })) {
+      for await (const message of client.fetch("1:*", { source: true, uid: true, emailId: true })) {
+        if (strict && (!message.source || !message.emailId)) {
+          throw new Error(`The ${connection.label} label could not be read completely. A message is missing its Gmail id or body.`);
+        }
         if (!message.source) continue;
         const parsed = await simpleParser(message.source.toString("utf8"));
         complaints.push(
           complaintFromMail(
-            String(message.uid),
+            strict ? String(message.emailId) : String(message.uid),
             parsed.subject ?? "",
             parsed.text ?? "",
             parsed.date ?? new Date(),
