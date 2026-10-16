@@ -53,6 +53,7 @@ export function SettingsPanel({ status, notice }: { status: ConnectionStatus; no
   }
 
   async function disconnect() {
+    if (!window.confirm("Disconnect this support inbox? Imported complaints stay in the dataset.")) return;
     setPending(true);
     await fetch("/api/gmail/connection", { method: "DELETE" });
     setPending(false);
@@ -61,15 +62,14 @@ export function SettingsPanel({ status, notice }: { status: ConnectionStatus; no
 
   return (
     <div className="space-y-8">
-      {notice ? <p className="rounded-lg bg-amber-50 px-4 py-3 text-sm text-amber-900">{notice}</p> : null}
-      {error ? <p className="text-sm text-red-700">{error}</p> : null}
+      {notice ? <p className="rounded-lg bg-amber-50 px-4 py-3 text-sm text-pretty text-amber-900">{notice}</p> : null}
+      {error ? <p role="alert" className="text-sm text-pretty text-red-700">{error}</p> : null}
 
       <section className="rounded-2xl border border-stone-200 bg-white p-5">
         <h2 className="text-lg font-semibold text-stone-900">Support inbox</h2>
         {connected.connected ? (
           <p className="mt-2 text-sm text-stone-600">
-            Connected to {connected.email || "a Gmail inbox"} by {connected.method === "oauth" ? "Google sign-in" : "app password"}.
-            Import reads the <span className="font-medium">{connected.label}</span> label only.
+            {connected.email || "Gmail"} · {connected.label} label.
           </p>
         ) : (
           <p className="mt-2 text-sm text-stone-600">No inbox is connected yet.</p>
@@ -82,6 +82,7 @@ export function SettingsPanel({ status, notice }: { status: ConnectionStatus; no
                 type="button"
                 onClick={runImport}
                 disabled={pending}
+                aria-busy={pending}
               >
                 {pending ? "Working…" : "Import complaints"}
               </button>
@@ -99,10 +100,9 @@ export function SettingsPanel({ status, notice }: { status: ConnectionStatus; no
       </section>
 
       <section className="rounded-2xl border border-stone-200 bg-white p-5">
-        <h2 className="text-lg font-semibold text-stone-900">Connect with Google</h2>
-        <p className="mt-2 text-sm leading-6 text-stone-600">
-          The person using the site signs in as the support mailbox and approves read-only access. The Google client
-          secret stays in the server environment and is never typed into this page.
+        <h2 className="text-lg font-semibold text-stone-900">Google</h2>
+        <p className="mt-2 text-pretty text-sm leading-6 text-stone-600">
+          Sign in as the support mailbox. Read-only.
         </p>
         <a
           className="mt-4 inline-block rounded-full bg-teal-800 px-4 py-2 text-sm font-medium text-white"
@@ -113,31 +113,32 @@ export function SettingsPanel({ status, notice }: { status: ConnectionStatus; no
       </section>
 
       <section className="rounded-2xl border border-stone-200 bg-white p-5">
-        <h2 className="text-lg font-semibold text-stone-900">Or save an app password</h2>
+        <h2 className="text-lg font-semibold text-stone-900">App password</h2>
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Create an app password in the Google account security settings for the support inbox. This is not the normal
-          Gmail password. It is stored for this company only, outside the source code.
+          Use a Google app password, not the account password.
         </p>
         <form onSubmit={savePassword} className="mt-4 space-y-4">
           <label className="block text-sm font-medium text-stone-800">
             Support address
             <input
-              className="mt-2 block w-full rounded-lg border border-stone-300 px-3 py-2 text-sm"
+              className="mt-2 block w-full rounded-lg border border-stone-300 bg-stone-50 px-3 py-2 text-base focus:border-teal-800 focus:bg-white sm:text-sm"
               name="email"
               type="email"
-              autoComplete="off"
+              autoComplete="email"
               required
+              aria-invalid={error ? true : undefined}
               placeholder="support@example.com"
             />
           </label>
           <label className="block text-sm font-medium text-stone-800">
             App password
             <input
-              className="mt-2 block w-full rounded-lg border border-stone-300 px-3 py-2 text-sm"
+              className="mt-2 block w-full rounded-lg border border-stone-300 bg-stone-50 px-3 py-2 text-base focus:border-teal-800 focus:bg-white sm:text-sm"
               name="appPassword"
               type="password"
-              autoComplete="off"
+              autoComplete="new-password"
               required
+              aria-invalid={error ? true : undefined}
             />
           </label>
           <button

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, type ReactNode } from "react";
+import { useId, useState, type ReactNode } from "react";
 import { DIMENSIONS, buildView, readFilters, type Filters } from "@/lib/analytics";
 import { MIN_FACTOR_COUNT } from "@/lib/pipeline";
 import { issueSlug } from "@/lib/label";
@@ -19,6 +19,7 @@ import {
 } from "@/lib/takeaways";
 import type { Briefing, FactorDimension } from "@/lib/types";
 import { weekLabel } from "@/lib/weeks";
+import { ChartFill, ChartTrack } from "./charts/chart-ui";
 import { Heatmap } from "./charts/heatmap";
 import { IssueTrend } from "./charts/issue-trend";
 import { LiftBars } from "./charts/lift-bars";
@@ -62,11 +63,11 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-stone-200/80 bg-white p-3.5 shadow-xs">
         <div className="flex flex-wrap items-center gap-3">
           <Select
-            label="Analysis Period"
+            label="Week"
             value={section === "complaints" ? params.get("week") || "" : filters.week}
             onChange={(week) => update({ week, factor: "" })}
           >
-            {section === "complaints" ? <option value="">All Available Weeks</option> : null}
+            {section === "complaints" ? <option value="">All weeks</option> : null}
             {complaintWeeks.map((week) => (
               <option key={week} value={week}>
                 {weekLabel(week)}
@@ -75,11 +76,11 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
           </Select>
 
           <Select
-            label="Filter Issue"
+            label="Issue"
             value={filters.issue}
             onChange={(issue) => update({ issue, factor: "" })}
           >
-            <option value="">All Categories ({issues.length})</option>
+            <option value="">All issues ({issues.length})</option>
             {issues.map((issue) => (
               <option key={issue} value={issue}>
                 {issue}
@@ -89,13 +90,13 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
 
           {section === "lift" || section === "concentration" || section === "complaints" ? (
             <Select
-              label="Operational Dimension"
+              label="Split by"
               value={filters.dimension}
               onChange={(dimension) => update({ dimension: dimension as FactorDimension, factor: "" })}
             >
               {DIMENSIONS.map((dimension) => (
                 <option key={dimension} value={dimension}>
-                  By {dimension.charAt(0).toUpperCase() + dimension.slice(1)}
+                  {dimension.charAt(0).toUpperCase() + dimension.slice(1)}
                 </option>
               ))}
             </Select>
@@ -129,8 +130,7 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
       {/* View: Issue Trends */}
       {section === "trend" ? (
         <Panel
-          title="Historical Issue Trends"
-          badge="Line Series"
+          title="Trends"
           takeaway={trendTakeaway(briefing.records, filters.issue)}
         >
           {trendReady(briefing.records) ? (
@@ -146,7 +146,7 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
               />
             </div>
           ) : (
-            <EmptyState message="Insufficient data points to render weekly trendline. At least 2 weeks required." />
+            <EmptyState message="Need at least two weeks." />
           )}
         </Panel>
       ) : null}
@@ -154,12 +154,11 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
       {/* View: Complaint Share */}
       {section === "share" ? (
         <Panel
-          title="Complaint Volume Distribution"
-          badge="Horizontal Ranking"
-          takeaway={`Which issue categories dominate current volume? ${categoryShareTakeaway(categories.total, categories.rows[0])}`}
+          title="Share"
+          takeaway={categoryShareTakeaway(categories.total, categories.rows[0])}
         >
           {categories.total === 0 ? (
-            <EmptyState message="No complaint records found for the selected period." />
+            <EmptyState message="No complaints in this period." />
           ) : (
             <CategoryBars
               total={categories.total}
@@ -173,18 +172,15 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
       {/* View: Lift Analysis */}
       {section === "lift" ? (
         <Panel
-          title={`Operational Lift Analysis${filters.issue ? "" : ` • ${view.focusIssue}`}`}
-          badge="Disproportionality"
+          title={filters.issue ? "Lift" : `Lift · ${view.focusIssue}`}
           takeaway={
-            weekOrders.length === 0
-              ? "Lift calculation unavailable: No matched order records exist for the selected week."
-              : linkedFocus.length === 0
-                ? "Lift calculation unavailable: These complaints lack order linkage; denominators cannot be aligned."
-                : `Complaint share based on ${linkedFocus.length} ${view.focusIssue} complaints linked to orders this week. Order share benchmark based on all ${weekOrders.length} orders placed that week. ${liftTakeaway(shareRow, linkedFocus.length, weekOrders.length)} Note: Lift > 1.0 denotes overrepresentation, not proven causality.`
+            weekOrders.length === 0 || linkedFocus.length === 0
+              ? "No linked orders this week."
+              : liftTakeaway(shareRow, linkedFocus.length, weekOrders.length)
           }
         >
           {weekOrders.length === 0 || linkedFocus.length === 0 ? (
-            <EmptyState message="Order denominator is unavailable to compute statistical lift." />
+            <EmptyState message="No linked orders this week." />
           ) : (
             <div className="rounded-xl border border-stone-100 bg-stone-50/40 p-5">
               <LiftBars
@@ -200,28 +196,25 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
       {/* View: Concentration Matrix */}
       {section === "concentration" ? (
         <Panel
-          title="Concentration Matrix"
-          badge="Heatmap"
+          title="Concentration"
           takeaway={
             weekOrders.length === 0
-              ? concentrationTakeaway(null, 0)
+              ? "No orders this week."
               : hotCell
                 ? concentrationTakeaway(hotCell, weekOrders.length)
-                : `No entity meets the minimum threshold of ${MIN_FACTOR_COUNT} complaints this week to be classified as a concentrated failure.`
+                : `Nothing with at least ${MIN_FACTOR_COUNT} complaints.`
           }
         >
           {weekOrders.length === 0 || briefing.records.length === 0 ? (
-            <EmptyState message="No operational records to compute cross-dimensional concentration." />
+            <EmptyState message="No records for this view." />
           ) : (
-            <div className="rounded-xl border border-stone-100 bg-white p-3">
-              <Heatmap
+            <Heatmap
                 columns={view.heatmapColumns}
                 rows={view.heatmap}
                 selectedIssue={filters.issue}
                 selectedValue={filters.factor}
                 onSelect={(issue, factor) => openComplaints({ week: filters.week, issue, factor, dimension: filters.dimension })}
               />
-            </div>
           )}
         </Panel>
       ) : null}
@@ -229,42 +222,27 @@ export function BriefingPanel({ briefing, section }: { briefing: Briefing; secti
       {/* View: Sentiment & Severity */}
       {section === "sentiment" ? (
         <Panel
-          title="Sentiment & Severity Breakdown"
-          badge="Rule-Based"
-          takeaway={`Methodology Note: Classifications are derived using deterministic keyword heuristics (not opaque ML predictions). Damaged items and refund delays default to High Severity. ${sentimentTakeaway(weekRecords)}`}
+          title="Sentiment and severity"
+          takeaway={sentimentTakeaway(weekRecords)}
         >
           {weekRecords.length === 0 ? (
-            <EmptyState message="No records in scope to calculate sentiment and severity distributions." />
+            <EmptyState message="No complaints this week." />
           ) : (
-            <div className="grid gap-6 lg:grid-cols-2">
-              <div className="rounded-2xl border border-stone-200/80 bg-white p-5 shadow-xs">
-                <SplitBars
-                  title="Customer Sentiment Distribution"
-                  icon={
-                    <svg className="h-4 w-4 text-teal-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-                    </svg>
-                  }
-                  rows={view.sentiment}
-                  keys={["negative", "neutral", "positive"]}
-                  colors={{ negative: "#e11d48", neutral: "#eab308", positive: "#0f766e" }}
-                  onSelect={(issue) => openComplaints({ week: filters.week, issue })}
-                />
-              </div>
-              <div className="rounded-2xl border border-stone-200/80 bg-white p-5 shadow-xs">
-                <SplitBars
-                  title="Severity Rating Distribution"
-                  icon={
-                    <svg className="h-4 w-4 text-amber-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                  }
-                  rows={view.severity}
-                  keys={["high", "medium", "low"]}
-                  colors={{ high: "#e11d48", medium: "#f59e0b", low: "#0f766e" }}
-                  onSelect={(issue) => openComplaints({ week: filters.week, issue })}
-                />
-              </div>
+            <div className="grid gap-8 lg:grid-cols-2">
+              <SplitBars
+                title="Sentiment"
+                rows={view.sentiment}
+                keys={["negative", "neutral", "positive"]}
+                colors={{ negative: "#9f1239", neutral: "#78716c", positive: "#0f766e" }}
+                onSelect={(issue) => openComplaints({ week: filters.week, issue })}
+              />
+              <SplitBars
+                title="Severity"
+                rows={view.severity}
+                keys={["high", "medium", "low"]}
+                colors={{ high: "#9f1239", medium: "#b45309", low: "#a8a29e" }}
+                onSelect={(issue) => openComplaints({ week: filters.week, issue })}
+              />
             </div>
           )}
         </Panel>
@@ -310,24 +288,29 @@ function ComplaintList({
       {/* Explorer Controls Bar */}
       <div className="flex flex-col gap-3 rounded-2xl border border-stone-200/80 bg-white p-4 shadow-xs sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-base font-semibold tracking-tight text-stone-950">
-            {filters.factor ? `Filtered Complaints: ${filters.factor}` : "Complaints Ledger Explorer"}
+          <h2 className="text-2xl text-stone-950">
+            {filters.factor ? filters.factor : "Complaints"}
           </h2>
           <p className="text-xs text-stone-500">
-            {filtered.length} matching message{filtered.length === 1 ? "" : "s"} across active filters
+            {filtered.length} shown
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <div className="relative min-w-[240px]">
+        <div className="flex w-full items-center gap-3 sm:w-auto">
+          <div className="relative min-w-0 flex-1 sm:w-60">
+            <label htmlFor="complaint-search" className="sr-only">
+              Search complaints by keyword or order number
+            </label>
             <input
-              type="text"
-              placeholder="Search keyword or order #..."
-              className="w-full rounded-xl border border-stone-200 bg-stone-50/60 px-3 py-1.5 pl-8 text-xs text-stone-900 transition-colors focus:border-stone-400 focus:bg-white focus:outline-hidden"
+              id="complaint-search"
+              type="search"
+              placeholder="Keyword or order id"
+              className="w-full rounded-xl border border-stone-200 bg-stone-50/60 px-3 py-2 pl-8 text-base text-stone-900 focus:border-teal-800 focus:bg-white sm:text-sm"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
             />
             <svg
+              aria-hidden="true"
               className="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-stone-400"
               viewBox="0 0 24 24"
               fill="none"
@@ -348,7 +331,7 @@ function ComplaintList({
                 onClear();
               }}
             >
-              Clear Filters
+              Clear
             </button>
           ) : null}
         </div>
@@ -356,19 +339,19 @@ function ComplaintList({
 
         {/* Ticket Cards Stream */}
         {filtered.length === 0 ? (
-          <EmptyState message="No complaint records match your active search and filter parameters." />
+          <EmptyState message="No matches." />
         ) : (
           <div className="overflow-x-auto rounded-2xl border border-stone-200/90 bg-white shadow-xs">
             <table className="w-full min-w-[48rem] border-collapse text-left text-xs">
               <thead>
                 <tr className="border-b border-stone-200 bg-stone-50/80 text-stone-600">
-                  <th className="p-3.5 font-semibold uppercase tracking-wider text-[11px] text-stone-500 w-24">Ticket ID</th>
-                  <th className="p-3.5 font-semibold text-stone-700 w-28">Category</th>
-                  <th className="p-3.5 font-semibold text-stone-700 w-24">Severity</th>
-                  <th className="p-3.5 font-semibold text-stone-700">Customer Message & Match Reason</th>
-                  <th className="p-3.5 font-semibold text-stone-700 w-28 text-center">Order ID</th>
-                  <th className="p-3.5 font-semibold text-stone-700 w-24 text-center">Period</th>
-                  <th className="p-3.5 font-semibold text-stone-700 w-24 text-right">Dossier</th>
+                  <th scope="col" className="p-3.5 font-semibold uppercase tracking-wider text-xs text-stone-500 w-24">Ticket ID</th>
+                  <th scope="col" className="p-3.5 font-semibold text-stone-700 w-28">Category</th>
+                  <th scope="col" className="p-3.5 font-semibold text-stone-700 w-24">Severity</th>
+                  <th scope="col" className="p-3.5 font-semibold text-stone-700">Customer Message & Match Reason</th>
+                  <th scope="col" className="p-3.5 font-semibold text-stone-700 w-28 text-center">Order ID</th>
+                  <th scope="col" className="p-3.5 font-semibold text-stone-700 w-24 text-center">Period</th>
+                  <th scope="col" className="p-3.5 font-semibold text-stone-700 w-24 text-right">Open</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-stone-100">
@@ -378,17 +361,17 @@ function ComplaintList({
 
                   return (
                     <tr key={complaint.id} className="transition-colors hover:bg-stone-50/60 align-top">
-                      <td className="p-3.5 font-mono text-stone-900 font-semibold whitespace-nowrap">
+                      <td className="p-3.5 font-mono text-stone-900 font-semibold whitespace-nowrap tabular-nums">
                         {complaint.id}
                       </td>
                       <td className="p-3.5 whitespace-nowrap">
-                        <span className="inline-flex items-center rounded-md bg-teal-50 px-2 py-0.5 text-[11px] font-semibold capitalize text-teal-800 ring-1 ring-inset ring-teal-600/20">
+                        <span className="inline-flex items-center rounded-md bg-teal-50 px-2 py-0.5 text-xs font-semibold capitalize text-teal-800 ring-1 ring-inset ring-teal-600/20">
                           {complaint.issue}
                         </span>
                       </td>
                       <td className="p-3.5 whitespace-nowrap">
                         <span
-                          className={`inline-flex items-center rounded-md px-2 py-0.5 font-mono text-[10px] font-bold uppercase ${
+                          className={`inline-flex items-center rounded-md px-2 py-0.5 font-mono text-xs font-bold uppercase ${
                             isHigh
                               ? "bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-600/20"
                               : complaint.severity === "medium"
@@ -401,20 +384,20 @@ function ComplaintList({
                       </td>
                       <td className="p-3.5">
                         <p className="text-stone-800 leading-relaxed font-normal">{complaint.text}</p>
-                        <p className="mt-1 font-mono text-[10px] text-stone-400">
+                        <p className="mt-1 font-mono text-xs text-stone-400">
                           Rule trigger: {complaint.reason}
                         </p>
                       </td>
                       <td className="p-3.5 font-mono text-center whitespace-nowrap">
                         {complaint.orderId ? (
-                          <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-[11px] font-semibold text-stone-700">
+                          <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-xs font-semibold text-stone-700">
                             #{complaint.orderId}
                           </span>
                         ) : (
                           <span className="text-stone-300">—</span>
                         )}
                       </td>
-                      <td className="p-3.5 font-mono text-center text-stone-500 whitespace-nowrap text-[11px]">
+                      <td className="p-3.5 font-mono text-center text-stone-500 whitespace-nowrap text-xs">
                         {complaint.week ? weekLabel(complaint.week).replace("Week of ", "") : "—"}
                       </td>
                       <td className="p-3.5 text-right whitespace-nowrap">
@@ -423,7 +406,7 @@ function ComplaintList({
                             className="inline-flex items-center gap-1 font-semibold text-teal-800 hover:text-teal-950 hover:underline"
                             href={`/briefing/evidence/${slug}`}
                           >
-                            <span>Dossier</span>
+                            <span>View</span>
                             <span>→</span>
                           </Link>
                         ) : (
@@ -455,8 +438,7 @@ function CategoryBars({
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between border-b border-stone-100 pb-2 text-xs text-stone-500">
-        <span className="font-semibold uppercase tracking-wider text-[10px]">Ranked Issue Categories</span>
-        <span className="font-mono text-[11px]">{total} Total Complaints This Period</span>
+        <span className="font-medium text-stone-700">{total} complaints</span>
       </div>
 
       <div className="space-y-3">
@@ -469,33 +451,26 @@ function CategoryBars({
               key={row.issue}
               type="button"
               onClick={() => onSelect(row.issue)}
-              className="group grid w-full grid-cols-[11rem_1fr_6rem] items-center gap-4 rounded-xl border border-stone-200/80 bg-white p-3 text-left transition-all hover:border-stone-300 hover:bg-stone-50/50 shadow-2xs"
+              className="grid w-full grid-cols-[11rem_1fr_4.5rem] items-center gap-3 rounded-xl border border-stone-200 bg-white px-3 py-2.5 text-left hover:border-stone-300"
             >
               {/* Category label with rank */}
               <div className="flex items-center gap-2 truncate">
-                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-stone-100 font-mono text-[11px] font-bold text-stone-500">
+                <span className="flex size-5 shrink-0 items-center justify-center rounded-md bg-stone-100 font-mono text-xs text-stone-500">
                   {idx + 1}
                 </span>
-                <span className="truncate text-xs font-semibold capitalize text-stone-900 group-hover:text-teal-950">
-                  {row.issue}
-                </span>
+                <span className="truncate text-sm font-medium capitalize text-stone-900">{row.issue}</span>
               </div>
 
               {/* Horizontal bar track */}
-              <div className="relative h-6 w-full rounded-md bg-stone-100/70 p-0.5">
-                <div
-                  className="flex h-full items-center justify-end rounded-sm bg-teal-700/85 px-2 text-[11px] font-bold text-white transition-all duration-300 group-hover:bg-teal-700"
-                  style={{ width: `${barWidth}%` }}
-                >
-                  <span className="font-mono">{sharePct}%</span>
-                </div>
-              </div>
+              <ChartTrack>
+                <ChartFill width={`${barWidth}%`} />
+              </ChartTrack>
 
-              {/* Count and delta */}
-              <div className="text-right font-mono text-xs">
-                <span className="font-bold text-stone-900">{row.count} msgs</span>
+              <div className="text-right font-mono text-xs tabular-nums">
+                <span className="font-medium text-stone-900">{row.count}</span>
+                <span className="ml-1 text-stone-400">{sharePct}%</span>
                 {row.previous !== null ? (
-                  <span className="block text-[10px] text-stone-400">
+                  <span className="block text-xs text-stone-400">
                     prev: {row.previous}
                   </span>
                 ) : null}
@@ -505,10 +480,6 @@ function CategoryBars({
         })}
       </div>
 
-      <div className="flex items-center justify-between border-t border-stone-100 pt-3 text-xs text-stone-500">
-        <span>Click any row to drill into complaints for this category</span>
-        <span className="font-mono text-[11px]">Ranked in descending volume order</span>
-      </div>
     </div>
   );
 }
@@ -544,9 +515,9 @@ function Panel({
   return (
     <section className="rounded-2xl border border-stone-200/80 bg-white p-6 shadow-xs">
       <div className="flex items-center justify-between border-b border-stone-100 pb-4">
-        <h2 className="text-base font-bold tracking-tight text-stone-950">{title}</h2>
+        <h2 className="text-2xl text-stone-950">{title}</h2>
         {badge ? (
-          <span className="rounded-md bg-stone-100 px-2 py-0.5 text-[10px] font-semibold text-stone-600">
+          <span className="rounded-md bg-stone-100 px-2 py-0.5 text-xs font-semibold text-stone-600">
             {badge}
           </span>
         ) : null}
@@ -559,8 +530,8 @@ function Panel({
 
 function EmptyState({ message }: { message: string }) {
   return (
-    <div className="rounded-xl border border-dashed border-stone-200 p-8 text-center text-xs text-stone-500">
-      {message}
+    <div className="rounded-xl border border-dashed border-stone-300 p-8 text-center text-sm text-stone-600">
+      <p className="text-pretty">{message}</p>
     </div>
   );
 }
@@ -576,13 +547,15 @@ function Select({
   onChange: (value: string) => void;
   children: ReactNode;
 }) {
+  const id = useId();
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+      <label htmlFor={id} className="text-xs font-semibold uppercase tracking-wider text-stone-400">
         {label}
       </label>
       <select
-        className="rounded-xl border border-stone-200 bg-stone-50/70 px-3 py-1.5 text-xs font-semibold text-stone-900 transition-colors hover:bg-stone-50 focus:border-stone-400 focus:outline-hidden"
+        id={id}
+        className="rounded-xl border border-stone-200 bg-stone-50/70 px-3 py-2 text-base font-medium text-stone-900 hover:bg-stone-50 focus:border-teal-800 sm:text-sm"
         value={value}
         onChange={(event) => onChange(event.target.value)}
       >

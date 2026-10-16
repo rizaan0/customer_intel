@@ -12,18 +12,15 @@ export function trendReady(records: ComplaintRecord[]): boolean {
 
 export function trendTakeaway(records: ComplaintRecord[], issue: string): string {
   const weeks = complaintWeeks(records);
-  if (records.length === 0) return "The upload has no complaints to chart.";
-  if (weeks.length < 2) {
-    const covered = weeks.length === 0 ? "no dated week" : weeks.map((week) => weekLabel(week)).join(", ");
-    return `A week-to-week change needs at least two weeks in the file. Complaints are only in ${covered}.`;
-  }
+  if (records.length === 0) return "No complaints to chart.";
+  if (weeks.length < 2) return "Need at least two weeks to compare.";
   const chosen = issue || issueWithLargestChange(records);
-  if (!chosen) return "The upload has no complaints to chart.";
+  if (!chosen) return "No complaints to chart.";
   const present = weeks.filter((week) => countIssue(records, chosen, week) > 0);
   if (present.length < 2) {
     const only = present[0];
     const count = only ? countIssue(records, chosen, only) : 0;
-    return `${titleIssue(chosen)} appears in only one week (${count} complaints${only ? ` in ${weekLabel(only)}` : ""}). A change needs another week.`;
+    return `${titleIssue(chosen)} is in one week only${only ? ` (${count})` : ""}.`;
   }
   const currentWeek = present[present.length - 1];
   const previousWeek = present[present.length - 2];
@@ -50,43 +47,40 @@ export function categoryShares(records: ComplaintRecord[], week: string): { tota
 }
 
 export function categoryShareTakeaway(total: number, top: CategoryShare | undefined): string {
-  if (total === 0 || !top) return "This week has no complaints to split by issue.";
-  const share = `${titleIssue(top.issue)} is the largest share this week: ${top.count} of ${total} complaints (${whole(top.count, total)}).`;
-  if (top.previous === null) return `${share} There is no earlier week to compare.`;
-  if (top.previous === 0) return `${share} The previous week had 0, so a percentage change is not shown.`;
-  return `${share} ${changeSentence(top.issue, top.count, top.previous)}`;
+  if (total === 0 || !top) return "No complaints this week.";
+  return `${titleIssue(top.issue)} is ${top.count} of ${total}.`;
 }
 
 export function shareTakeaway(row: ShareRow | undefined, complaintTotal: number, orderTotal: number): string {
-  if (orderTotal === 0) return "Complaint share cannot be compared with orders because this upload has no orders for the selected week.";
-  if (!row || complaintTotal === 0) return "The upload has no complaints in this week to compare with orders.";
-  return `${row.value} accounts for ${whole(row.complaintCount, complaintTotal)} of these complaints (${row.complaintCount} of ${complaintTotal}) and ${whole(row.orderCount, orderTotal)} of orders (${row.orderCount} of ${orderTotal}).`;
+  if (orderTotal === 0) return "No orders this week.";
+  if (!row || complaintTotal === 0) return "No complaints this week.";
+  return `${row.value}: ${whole(row.complaintCount, complaintTotal)} of complaints, ${whole(row.orderCount, orderTotal)} of orders.`;
 }
 
 export function liftTakeaway(row: ShareRow | undefined, complaintTotal: number, orderTotal: number): string {
-  if (orderTotal === 0) return "Lift cannot be calculated because this upload has no orders for the selected week.";
-  if (!row || complaintTotal === 0) return "The upload has no complaints in this week to compare with orders.";
-  return `${row.value} has ${row.lift.toFixed(1)}× as many of these complaints as its share of orders (${row.complaintCount} complaints, ${row.orderCount} orders).`;
+  if (orderTotal === 0) return "No orders this week.";
+  if (!row || complaintTotal === 0) return "No complaints this week.";
+  return `${row.value}: lift ${row.lift.toFixed(1)} (${row.complaintCount} complaints, ${row.orderCount} orders).`;
 }
 
 export function concentrationTakeaway(cell: { issue: string; value: string; complaintCount: number; lift: number } | null, orderTotal: number): string {
-  if (orderTotal === 0) return "Concentration cannot be calculated because this upload has no orders for the selected week.";
-  if (!cell) return "No complaint in this week is tied to an order factor.";
-  return `${titleIssue(cell.issue)} complaints concentrate at ${cell.value}: ${cell.complaintCount} complaints, compared with that entity's share of the ${orderTotal} orders in the same week. Lift ${cell.lift.toFixed(1)}. This is an association, not proof of cause.`;
+  if (orderTotal === 0) return "No orders this week.";
+  if (!cell) return "No complaint is linked to an order.";
+  return `${titleIssue(cell.issue)} at ${cell.value}: ${cell.complaintCount} complaints, lift ${cell.lift.toFixed(1)}.`;
 }
 
 export function sentimentTakeaway(records: ComplaintRecord[]): string {
-  if (records.length === 0) return "The upload has no complaints in this week to split by sentiment or severity.";
+  if (records.length === 0) return "No complaints this week.";
   const negative = records.filter((record) => record.sentiment === "negative").length;
   const high = records.filter((record) => record.severity === "high").length;
-  return `${negative} of ${records.length} complaints this week are negative (${whole(negative, records.length)}). ${high} are high severity (${whole(high, records.length)}).`;
+  return `${negative} of ${records.length} negative. ${high} high severity.`;
 }
 
 export function alertTakeaway(records: ComplaintRecord[], issue: string, latestWeek: string, current: number): string {
   const weeks = complaintWeeks(records);
   const index = weeks.indexOf(latestWeek);
   if (index <= 0) {
-    return `${titleIssue(issue)} has ${current} complaints this week. The file has no earlier week to compare.`;
+    return `${titleIssue(issue)}: ${current} this week.`;
   }
   return changeSentence(issue, current, countIssue(records, issue, weeks[index - 1]));
 }
@@ -130,15 +124,10 @@ function issueWithLargestChange(records: ComplaintRecord[]): string {
 
 function changeSentence(issue: string, current: number, previous: number): string {
   const name = titleIssue(issue);
-  if (previous === 0) {
-    return `${name} complaints have none in the previous week (${current} this week, 0 the week before).`;
-  }
+  if (previous === 0) return `${name}: ${current} this week, 0 last week.`;
   const pct = Math.round(((current - previous) / previous) * 100);
-  if (pct === 0) {
-    return `${name} complaints stayed the same compared with the previous week (${current} this week, ${previous} the week before).`;
-  }
-  const direction = pct > 0 ? "increased" : "decreased";
-  return `${name} complaints ${direction} ${Math.abs(pct)}% compared with the previous week (${current} this week, ${previous} the week before).`;
+  const change = pct > 0 ? `+${pct}%` : `${pct}%`;
+  return `${name}: ${current} this week, ${previous} last week (${change}).`;
 }
 
 function countIssue(records: ComplaintRecord[], issue: string, week: string): number {

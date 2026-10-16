@@ -36,10 +36,9 @@ async function Settings({
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-6 py-8">
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight text-stone-950">Settings</h1>
-        <p className="mt-3 max-w-2xl text-base leading-7 text-stone-600">
-          Connect the company&apos;s support Gmail here. Messages in the complaints label become complaint rows. Include
-          an order id such as Order 5001 so the briefing can place the mail against a warehouse, product, or partner.
+        <h1 className="text-3xl text-stone-950 sm:text-4xl">Settings</h1>
+        <p className="mt-3 max-w-prose text-pretty text-base leading-relaxed text-stone-600">
+          Connect a support inbox. Include an order id so complaints can be matched to orders.
         </p>
       </div>
       <SettingsPanel status={connectionStatus()} notice={notice} />

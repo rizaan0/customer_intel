@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { connection } from "next/server";
 import { BriefingShell } from "@/components/briefing-shell";
+import { GlowingAreaChart } from "@/components/ui/c-chart-16";
 import { readBriefing } from "@/lib/store";
 import { alertTakeaway, complaintWeeks } from "@/lib/takeaways";
 import type { ComplaintRecord } from "@/lib/types";
@@ -25,13 +26,8 @@ async function Overview() {
         {/* Header Breadcrumbs & Meta */}
         <div className="flex flex-col gap-2 border-b border-stone-200/80 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="flex items-center gap-2 text-xs text-stone-500">
-              <span>Operations Briefing</span>
-              <span>/</span>
-              <span className="font-medium text-stone-900">Weekly Executive Synthesis</span>
-            </div>
-            <h1 className="mt-1 text-2xl font-bold tracking-tight text-stone-950 sm:text-3xl">
-              Operations Overview
+            <h1 className="text-balance text-3xl text-stone-950 sm:text-4xl">
+              Overview
             </h1>
           </div>
           <div className="flex items-center gap-2">
@@ -45,25 +41,19 @@ async function Overview() {
         {/* 4 Executive KPI Cards */}
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <MetricCard
-            title="Total Complaints"
+            title="Complaints"
             value={String(briefing.complaintCount)}
-            caption="Verified records in active scope"
-            badge="100% Ingested"
-            badgeType="neutral"
             icon={
-              <svg className="h-4 w-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" className="size-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
               </svg>
             }
           />
           <MetricCard
-            title="Total Orders"
+            title="Orders"
             value={String(briefing.orderCount)}
-            caption="Matched shipments baseline"
-            badge="Benchmark"
-            badgeType="neutral"
             icon={
-              <svg className="h-4 w-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" className="size-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
                 <path d="M3 6h18" />
                 <path d="M16 10a4 4 0 0 1-8 0" />
@@ -71,13 +61,10 @@ async function Overview() {
             }
           />
           <MetricCard
-            title="Complaint Rate"
+            title="Rate"
             value={briefing.orderCount === 0 ? "—" : `${((briefing.complaintCount / briefing.orderCount) * 100).toFixed(1)}%`}
-            caption={`${briefing.complaintCount} per ${briefing.orderCount} total orders`}
-            badge="Ratio"
-            badgeType="neutral"
             icon={
-              <svg className="h-4 w-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" className="size-4 text-stone-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <line x1="19" x2="5" y1="5" y2="19" />
                 <circle cx="6.5" cy="6.5" r="2.5" />
                 <circle cx="17.5" cy="17.5" r="2.5" />
@@ -85,14 +72,11 @@ async function Overview() {
             }
           />
           <MetricCard
-            title="Prevalent Issue"
+            title="Top issue"
             value={mostCommon(briefing.records)}
-            caption="Highest frequency category"
-            badge="Surveillance"
-            badgeType="accent"
             capitalize
             icon={
-              <svg className="h-4 w-4 text-teal-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg aria-hidden="true" className="size-4 text-teal-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <circle cx="12" cy="12" r="10" />
                 <line x1="12" x2="12" y1="8" y2="12" />
                 <line x1="12" x2="12.01" y1="16" y2="16" />
@@ -105,23 +89,23 @@ async function Overview() {
         <section className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold tracking-tight text-stone-950">Prioritized Spike Alerts</h2>
-              <p className="text-xs text-stone-500">
-                Statistical anomalies exceeding ≥1.5× 4-week average with minimum 8 complaint threshold
-              </p>
+              <h2 className="text-balance text-2xl text-stone-950">Spikes</h2>
             </div>
             <span className="rounded-full bg-stone-100 px-2.5 py-0.5 font-mono text-xs font-semibold text-stone-700">
-              {briefing.alerts.length} Active Alerts
+              {briefing.alerts.length}
             </span>
           </div>
 
           {briefing.complaintCount === 0 ? (
-            <div className="rounded-2xl border border-stone-200 bg-white p-8 text-center text-sm text-stone-500">
-              No complaint records are currently loaded to analyze.
+            <div className="rounded-2xl border border-dashed border-stone-300 bg-white p-8 text-center text-sm text-stone-600">
+              <p>No complaint records are loaded.</p>
+              <Link href="/upload" className="mt-3 inline-flex rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white hover:bg-stone-800">
+                Upload a dataset
+              </Link>
             </div>
           ) : briefing.alerts.length === 0 ? (
             <div className="rounded-2xl border border-stone-200 bg-white p-8 text-center text-sm text-stone-600">
-              All issue categories remain within standard operating baseline parameters this week.
+              No spikes this week.
             </div>
           ) : (
             <div className="grid gap-4">
@@ -133,15 +117,15 @@ async function Overview() {
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                     <div className="space-y-1.5">
                       <div className="flex items-center gap-2.5">
-                        <span className="inline-flex items-center gap-1.5 rounded-md bg-rose-50 px-2 py-0.5 text-[11px] font-bold text-rose-700 ring-1 ring-inset ring-rose-600/20">
+                        <span className="inline-flex items-center gap-1.5 rounded-md bg-rose-50 px-2 py-0.5 text-xs font-bold text-rose-700 ring-1 ring-inset ring-rose-600/20">
                           <span className="h-1.5 w-1.5 rounded-full bg-rose-500" />
-                          Alert #{idx + 1} • {(alert.current / alert.baseline).toFixed(1)}× Spike
+                          {(alert.current / alert.baseline).toFixed(1)}×
                         </span>
                         <h3 className="text-lg font-bold capitalize tracking-tight text-stone-950">
                           {alert.issue}
                         </h3>
                       </div>
-                      <p className="max-w-3xl text-xs leading-relaxed text-stone-600 sm:text-sm">
+                      <p className="max-w-3xl text-pretty text-xs leading-relaxed text-stone-600 sm:text-sm">
                         {alertTakeaway(briefing.records, alert.issue, briefing.latestWeek, alert.current)}
                       </p>
                     </div>
@@ -151,7 +135,7 @@ async function Overview() {
                         href={`/briefing/evidence/${alert.slug}`}
                         className="inline-flex items-center gap-1.5 rounded-xl bg-stone-900 px-4 py-2 text-xs font-semibold text-white shadow-xs transition-colors hover:bg-stone-800"
                       >
-                        <span>Investigate Evidence</span>
+                        <span>Investigate</span>
                         <span className="text-stone-400">→</span>
                       </Link>
                     </div>
@@ -161,28 +145,28 @@ async function Overview() {
                   <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-stone-100 pt-3.5 text-xs">
                     {alert.factor ? (
                       <div className="flex items-center gap-2">
-                        <span className="text-stone-500">Root attribution candidate:</span>
+                        <span className="text-stone-500">At</span>
                         <span className="font-semibold text-stone-900">{alert.factor.value}</span>
-                        <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-[10px] font-medium text-stone-600">
+                        <span className="rounded-md bg-stone-100 px-1.5 py-0.5 text-xs font-medium text-stone-600">
                           {alert.factor.dimension}
                         </span>
                         <span className="text-stone-300">•</span>
-                        <span className="font-medium text-teal-800">
+                        <span className="font-medium text-teal-800 tabular-nums">
                           {percent(alert.factor.complaintShare)} of complaints ({alert.factor.complaintCount})
                         </span>
                         <span className="text-stone-300">•</span>
-                        <span className="rounded-md bg-teal-50 px-1.5 py-0.5 text-[11px] font-bold text-teal-900">
+                        <span className="rounded-md bg-teal-50 px-1.5 py-0.5 text-xs font-bold text-teal-900">
                           Lift {liftLabel(alert.factor.lift)}
                         </span>
                       </div>
                     ) : (
-                      <span className="text-stone-500">No operational factor crossed the lift ≥2.0 threshold.</span>
+                      <span className="text-stone-500">No factor with lift of 2 or more.</span>
                     )}
 
-                    <div className="flex items-center gap-2 font-mono text-[11px] text-stone-500">
-                      <span className="text-rose-600 font-medium">{alert.sentiment.negative} Negative</span>
-                      <span>/</span>
-                      <span className="text-amber-700 font-medium">{alert.severity.high} High Severity</span>
+                    <div className="flex items-center gap-2 font-mono text-xs text-stone-500 tabular-nums">
+                      <span className="text-rose-600 font-medium">{alert.sentiment.negative} negative</span>
+                      <span className="text-stone-300">·</span>
+                      <span className="text-amber-700 font-medium">{alert.severity.high} high severity</span>
                     </div>
                   </div>
                 </article>
@@ -201,78 +185,49 @@ async function Overview() {
 function MetricCard({
   title,
   value,
-  caption,
-  badge,
-  badgeType = "neutral",
   icon,
   capitalize = false,
 }: {
   title: string;
   value: string;
-  caption: string;
-  badge: string;
-  badgeType?: "neutral" | "accent";
   icon: React.ReactNode;
   capitalize?: boolean;
 }) {
   return (
-    <article className="rounded-2xl border border-stone-200/80 bg-white p-5 shadow-xs transition-all hover:border-stone-300">
+    <article className="rounded-2xl border border-stone-200/80 bg-white p-5 shadow-xs">
       <div className="flex items-center justify-between">
         <span className="text-xs font-semibold text-stone-500">{title}</span>
-        <div className="flex items-center gap-2">
-          <span
-            className={`rounded-md px-1.5 py-0.5 text-[10px] font-medium ${
-              badgeType === "accent"
-                ? "bg-teal-50 text-teal-800 ring-1 ring-inset ring-teal-600/20"
-                : "bg-stone-100 text-stone-600"
-            }`}
-          >
-            {badge}
-          </span>
-          {icon}
-        </div>
+        {icon}
       </div>
-      <p className={`mt-3 text-3xl font-bold tracking-tight text-stone-950 font-mono ${capitalize ? "capitalize" : ""}`}>
+      <p className={`mt-3 font-semibold text-stone-950 tabular-nums ${capitalize ? "font-sans text-2xl leading-tight capitalize" : "font-mono text-3xl"}`}>
         {value}
       </p>
-      <p className="mt-1 text-xs text-stone-500">{caption}</p>
     </article>
   );
 }
 
 function WeeklyTotals({ records }: { records: ComplaintRecord[] }) {
   const weeks = complaintWeeks(records);
-  const max = Math.max(...weeks.map((week) => records.filter((record) => record.week === week).length), 1);
   if (weeks.length === 0) return null;
 
   return (
     <section className="rounded-2xl border border-stone-200/80 bg-white p-6 shadow-xs">
       <div className="flex items-center justify-between border-b border-stone-100 pb-4">
         <div>
-          <h2 className="text-base font-semibold tracking-tight text-stone-950">Weekly Total Ingestion Volume</h2>
-          <p className="text-xs text-stone-500">Only verified timestamps in scope; no synthetic extrapolation</p>
+          <h2 className="text-2xl text-stone-950">Weekly volume</h2>
         </div>
-        <span className="font-mono text-xs text-stone-500">{weeks.length} Weeks Recorded</span>
+        <span className="font-mono text-xs text-stone-500">{weeks.length} weeks</span>
       </div>
 
-      <div className="mt-5 space-y-3">
-        {weeks.map((week) => {
-          const count = records.filter((record) => record.week === week).length;
-          const sharePct = Math.round((count / max) * 100);
-          return (
-            <div key={week} className="grid grid-cols-[8.5rem_1fr_3.5rem] items-center gap-3 text-xs">
-              <span className="font-medium text-stone-700">{weekLabel(week).replace("Week of ", "")}</span>
-              <div className="h-2 w-full overflow-hidden rounded-full bg-stone-100">
-                <div
-                  className="h-full rounded-full bg-teal-800 transition-all duration-300"
-                  style={{ width: `${Math.max(4, sharePct)}%` }}
-                />
-              </div>
-              <span className="text-right font-mono font-semibold text-stone-900">{count} msgs</span>
-            </div>
-          );
-        })}
-      </div>
+      <GlowingAreaChart
+        className="mt-4 aspect-auto h-64 w-full"
+        xKey="week"
+        data={weeks.map((week) => ({
+          week: weekLabel(week).replace(/^Week of /, "").replace(/ \d{4}$/, ""),
+          complaints: records.filter((record) => record.week === week).length,
+        }))}
+        series={[{ key: "complaints", label: "Complaints", color: "var(--chart-1)" }]}
+      />
     </section>
   );
 }

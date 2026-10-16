@@ -32,20 +32,20 @@ export function CreateDataset({ connected, email }: { connected: boolean; email:
       <h2 className="text-lg font-semibold text-stone-900">Create dataset</h2>
       {connected ? (
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Connected to {email || "a Gmail inbox"}. Create CSV file reads that inbox on the server, keeps messages that
-          match the complaint keywords, and downloads a complaints file. It does not replace the dataset that is loaded
-          now.
+          {email || "Gmail"} is connected. Downloads a complaints file. Does not replace the loaded dataset.
         </p>
       ) : (
-        <p className="mt-2 text-sm leading-6 text-stone-600">Connect Gmail in Settings before creating a CSV.</p>
+        <p id="create-dataset-help" className="mt-2 text-pretty text-sm leading-6 text-stone-600">Connect Gmail in Settings before creating a CSV.</p>
       )}
       <p className="mt-3 text-sm text-stone-600">Keywords: {COMPLAINT_KEYWORDS.join(", ")}.</p>
-      {error ? <p className="mt-3 text-sm text-red-700">{error}</p> : null}
+      {error ? <p role="alert" className="mt-3 text-sm text-pretty text-red-700">{error}</p> : null}
       <button
         className="mt-4 rounded-full bg-stone-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
         type="button"
         onClick={createCsv}
         disabled={!connected || pending}
+        aria-busy={pending}
+        aria-describedby={connected ? undefined : "create-dataset-help"}
       >
         {pending ? "Working…" : "Create CSV file"}
       </button>
